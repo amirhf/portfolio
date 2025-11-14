@@ -1,0 +1,11 @@
+export const metadata = { title: 'Credit Ledger — Case Study' }
+ 
+# Credit Ledger — Event‑driven accounting (Go + Postgres)
+**Win:** Production patterns for money‑like flows: CQRS, transactional outbox, idempotent consumers, observability.
+## Problem
+Money/credits require invariants, auditability, and failure‑safe messaging.
+## Approach
+Go services; Postgres + projections; outbox table + relay; retry‑safe consumers; Swagger for testing; Jaeger/Grafana.
+## Outcome
+Clear blueprint teams can clone/run; showcases senior design trade‑offs.
+[Repository](https://github.com/amirhf/creditLedger)
