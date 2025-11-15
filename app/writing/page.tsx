@@ -24,7 +24,7 @@ export default function Writing() {
                 }
               >
                 {p.tags && p.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-zinc-400">
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-ink-muted">
                     {p.tags.map((t) => (
                       <span key={t}>#{t}</span>
                     ))}

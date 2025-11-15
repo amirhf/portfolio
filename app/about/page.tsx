@@ -10,7 +10,7 @@ export default function About() {
       <main className="mx-auto max-w-6xl px-4">
         <Section title="About">
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-4 text-zinc-300">
+            <div className="space-y-4 text-ink-muted">
               <p>Senior Software Engineer with 10+ years across Microsoft, AWS, and high‑growth product teams. I specialize in integrating GenAI into real products and designing reliable event‑driven backends.</p>
               <ul className="list-disc pl-6">
                 <li>AI photo editing features adopted by millions</li>
@@ -21,12 +21,12 @@ export default function About() {
                 {["Microsoft","AWS","Property Finder","DataGardens"].map(t=> <Badge key={t}>{t}</Badge>)}
               </div>
             </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+            <div className="rounded-2xl border border-line bg-surface p-6">
               <h3 className="font-semibold">Quick links</h3>
               <ul className="mt-3 space-y-2 text-sm">
                 <li><a className="underline underline-offset-4" href="#">Download resume (PDF)</a></li>
                 <li><a className="underline underline-offset-4" href="https://github.com/amirhf" target="_blank">GitHub</a></li>
-                <li><a className="underline underline-offset-4" href="https://www.linkedin.com/in/amirhf" target="_blank">LinkedIn</a></li>
+                <li><a className="underline underline-offset-4" href="https://www.linkedin.com/in/amir-firouzmanesh/" target="_blank">LinkedIn</a></li>
               </ul>
             </div>
           </div>
