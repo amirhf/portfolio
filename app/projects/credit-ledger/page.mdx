@@ -1,11 +1,203 @@
-export const metadata = { title: 'Credit Ledger — Case Study' }
- 
-# Credit Ledger — Event‑driven accounting (Go + Postgres)
-**Win:** Production patterns for money‑like flows: CQRS, transactional outbox, idempotent consumers, observability.
-## Problem
-Money/credits require invariants, auditability, and failure‑safe messaging.
-## Approach
-Go services; Postgres + projections; outbox table + relay; retry‑safe consumers; Swagger for testing; Jaeger/Grafana.
-## Outcome
-Clear blueprint teams can clone/run; showcases senior design trade‑offs.
-[Repository](https://github.com/amirhf/creditLedger)
+import ProjectPage from '@/components/projects/ProjectPage'
+import ProjectHero from '@/components/projects/ProjectHero'
+import ProjectSection from '@/components/projects/ProjectSection'
+import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+
+export const metadata = {
+  title: 'Credit Ledger – Event-Driven Double-Entry Ledger',
+  description:
+    'Event-driven credit ledger with double-entry accounting, CQRS projections, transactional outbox, idempotent transfers, and full observability.',
+}
+
+<ProjectPage>
+  <ProjectHero
+    title="Credit Ledger – Event-Driven Double-Entry Ledger"
+    tagline="Event-driven credit ledger with transactional outbox, CQRS read models, and end-to-end observability."
+  >
+    <p>
+      Credit Ledger is a production-style microservices system that models how a real wallet or credits backend moves
+      money safely. It uses double-entry accounting over an append-only journal, with Kafka events, replayable
+      projections, and strict idempotency so each transfer has exactly-once <em>effect</em> even when requests or
+      consumers are retried.
+    </p>
+    <div className="mt-6 flex flex-wrap gap-3 text-sm">
+      <a
+        href="https://creditledger-gateway-staging.fly.dev/api"
+        target="_blank"
+        rel="noreferrer"
+        className="rounded-full bg-brand-sky px-4 py-1.5 font-medium text-ink-on-brand hover:bg-brand-sky/90"
+      >
+        View Swagger API
+      </a>
+      <a
+        href="https://github.com/amirhf/creditLedger"
+        target="_blank"
+        rel="noreferrer"
+        className="rounded-full border border-line px-4 py-1.5 font-medium text-ink hover:bg-surface-muted"
+      >
+        View source on GitHub
+      </a>
+    </div>
+  </ProjectHero>
+
+  <ProjectSection title="System Goals & Capabilities">
+    <p>The project answers a concrete question: “How would I design a safe, observable ledger for credits or wallets?”</p>
+    <ul>
+      <li>Accounts in a single currency, with an append-only journal of postings.</li>
+      <li>Transfers that debit one account, credit another, and keep the ledger strictly balanced.</li>
+      <li>Queryable balances and time-bounded statements built from replayable events.</li>
+      <li>Exactly-once <em>effect</em> under failures using at-least-once delivery + idempotent commands/consumers.</li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Architecture at a Glance">
+    <p>
+      The system is decomposed into small services, each owning its data and behaviour, wired together with HTTP and
+      Kafka:
+    </p>
+    <ul>
+      <li>
+        <strong>accounts (Go):</strong> owns account creation and emits <code>AccountCreated</code> events.
+      </li>
+      <li>
+        <strong>ledger (Go):</strong> validates and writes double-entry journal entries and implements the
+        transactional outbox.
+      </li>
+      <li>
+        <strong>posting-orchestrator (Go):</strong> public transfer command handler with idempotency guarantees.
+      </li>
+      <li>
+        <strong>read-model (Go):</strong> Kafka consumers that maintain <code>balances</code> and
+        <code>statements</code> projections for fast queries.
+      </li>
+      <li>
+        <strong>gateway (TypeScript / NestJS):</strong> REST API and Swagger UI that fronts all commands and queries.
+      </li>
+    </ul>
+    <p>
+      Infra includes Redpanda (Kafka API), Postgres per service, Redis for idempotency keys, and an observability stack
+      (OpenTelemetry, Jaeger, Prometheus, Grafana).
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Domain & Consistency Model">
+    <p>
+      The core invariant is classic double-entry accounting: every journal entry is a batch of lines where the sum of
+      debits equals the sum of credits.
+    </p>
+    <ul>
+      <li>
+        <strong>Journal entries:</strong> immutable records with a batch ID and timestamp, each containing multiple
+        lines of the form
+        <code>(account_id, amount_minor, side)</code>.
+      </li>
+      <li>
+        <strong>Transfers:</strong> commands that create a two-line batch (debit source, credit destination) in a single
+        transaction.
+      </li>
+      <li>
+        <strong>Balances:</strong> derived as the sum of journal lines per account in a read-side Postgres instance.
+      </li>
+      <li>
+        <strong>Statements:</strong> append-only projections of entries per account, reconstructible by replaying
+        events.
+      </li>
+    </ul>
+    <p>
+      This design makes the write side the source of truth while allowing the read side to be dropped and rebuilt at any
+      time from the journal topic.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Patterns Implemented">
+    <ul>
+      <li>
+        <strong>Transactional outbox:</strong> the ledger service writes both journal data and an outbox row in the same
+        Postgres transaction. A relay process drains unsent rows with <code>FOR UPDATE SKIP LOCKED</code> and publishes
+        them to Kafka, eliminating dual-write race conditions.
+      </li>
+      <li>
+        <strong>CQRS with replayable projections:</strong> the read-model service consumes <code>EntryPosted</code> and
+        other events, updating <code>balances</code> and <code>statements</code> projections idempotently. Projections
+        can be dropped and rebuilt from Kafka for recovery or schema changes.
+      </li>
+      <li>
+        <strong>Idempotent transfers:</strong> the posting-orchestrator uses Redis and a DB record keyed by
+        <code>idempotency_key</code> so duplicate <code>POST /transfers</code> calls return the original result instead
+        of double-crediting an account.
+      </li>
+      <li>
+        <strong>Exactly-once effect:</strong> combined with idempotent consumers (dedup by event ID), at-least-once
+        delivery over Kafka still yields a single net effect on balances.
+      </li>
+      <li>
+        <strong>Reconciliation:</strong> a background job can recompute balances directly from the journal and compare
+        them with projections to detect drift.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="External API & Developer Experience">
+    <ProjectScreenshot
+      src="/images/projects/credit-ledger/ledger-1-gateway.png"
+      alt="Swagger UI for the Credit Ledger Gateway API."
+      caption="Swagger UI exposes the REST surface for accounts, transfers, balances, and statements."
+    />
+    <p>
+      The gateway surfaces a small, stable REST API:
+    </p>
+    <ul>
+      <li><code>POST /accounts</code> – create an account in a given currency.</li>
+      <li>
+        <code>POST /transfers</code> – issue an idempotent transfer with <code>idempotency_key</code>.
+      </li>
+      <li>
+        <code>GET /accounts/:id/balance</code> – read the projected balance.
+      </li>
+      <li>
+        <code>GET /accounts/:id/statements</code> – fetch the statement view built from events.
+      </li>
+    </ul>
+    <p>
+      This makes the system easy to demo live (via Swagger or cURL) while hiding internal service boundaries.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Observability & Runtime Behaviour">
+    <div className="grid gap-6 md:grid-cols-2">
+      <ProjectScreenshot
+        src="/images/projects/credit-ledger/ledger-4-jaeger.png"
+        alt="Jaeger trace for a GET /accounts request."
+        caption="Jaeger spans show a full trace for a request across gateway, orchestrator, ledger, and read model."
+      />
+      <ProjectScreenshot
+        src="/images/projects/credit-ledger/ledger-5-grafana.png"
+        alt="Grafana dashboard for the credit ledger system."
+        caption="Grafana dashboard tracks event processing latency, query latency, and outbox queue size."
+      />
+    </div>
+    <p>
+      All services emit OpenTelemetry traces and Prometheus metrics. A typical transfer trace shows the flow through the
+      gateway, orchestrator, ledger write, outbox relay, Kafka publish, and read-model consumer update. Grafana panels
+      monitor:
+    </p>
+    <ul>
+      <li>Read-model event processing latency and consumer lag.</li>
+      <li>Outbox queue age and size (to catch stuck relays).</li>
+      <li>Balance/statement query latency for the API.</li>
+    </ul>
+    <p>
+      Together these tools make failure drills, replay tests, and performance tuning part of the core demo.
+    </p>
+  </ProjectSection>
+</ProjectPage>

@@ -1,8 +1,209 @@
-export const metadata = { title: 'AI Feature Router — Case Study' }
- 
-# AI Feature Router — Local‑first captioning & search
-**Win:** Latency/cost‑aware routing: run CLIP/BLIP locally, call cloud when thresholds demand it.
-## Approach
-FastAPI + workers; embeddings in Qdrant/pgvector; semantic search endpoint; metrics UI.
-## Next
-A/B policy tuner and batch evaluation.
+import ProjectPage from '@/components/projects/ProjectPage'
+import ProjectHero from '@/components/projects/ProjectHero'
+import ProjectSection from '@/components/projects/ProjectSection'
+import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+
+export const metadata = {
+  title: 'Image Search – Local-First Image Captioning & Semantic Search',
+  description:
+    'Image captioning and semantic image/text search using local models with a cost/latency-aware cloud fallback.',
+}
+
+<ProjectPage>
+  <ProjectHero
+    title="Image Search – Local-First Image Captioning & Semantic Search"
+    tagline="Image captioning and search using local models with a cost/latency-aware cloud fallback."
+  >
+    <p>
+      Image Search is a full-stack demo of an AI-powered image library that captions images and makes them searchable
+      with natural-language queries. It is built to showcase local-first inference, vector search, and production-grade
+      observability in a realistic system.
+    </p>
+    <p>
+      The backend uses FastAPI services to caption and embed images with local models, only falling back to cloud
+      providers when confidence is low or latency budgets are exceeded. A Next.js UI lets users upload images, search by
+      text, inspect metadata, and find visually similar images.
+    </p>
+    <p>
+      This project demonstrates how to design and ship an AI feature router in practice: from routing policies and
+      vector stores to dataset seeding, benchmarking, and dashboards.
+    </p>
+
+    <div className="mt-6 flex flex-wrap gap-3 text-sm">
+      <a
+        href="https://image-search-two-lovat.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
+        className="rounded-full bg-brand-sky px-4 py-1.5 font-medium text-ink-on-brand hover:bg-brand-sky/90"
+      >
+        View live demo
+      </a>
+      <a
+        href="https://github.com/amirhf/imageSearch"
+        target="_blank"
+        rel="noreferrer"
+        className="rounded-full border border-line px-4 py-1.5 font-medium text-ink hover:bg-surface-muted"
+      >
+        View source on GitHub
+      </a>
+    </div>
+  </ProjectHero>
+
+  <ProjectSection title="Tech Stack & Role">
+    <p>
+      <strong>Stack:</strong> FastAPI, Python, BLIP (captioning), OpenCLIP / SigLIP (embeddings), Postgres with pgvector
+      or Qdrant, S3-compatible storage (local / MinIO / R2 / S3), Prometheus, Grafana, Jaeger, Docker, Next.js 16, React
+      18, TypeScript, Tailwind CSS, TanStack Query.
+    </p>
+    <p>
+      I designed and implemented the system end-to-end, including the routing policy, vector search integration,
+      observability setup, and the Next.js UI for uploading, searching, and inspecting images.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="What This Project Demonstrates">
+    <ul>
+      <li>
+        <strong>Local vs cloud model routing:</strong> Run captioning on local models by default and selectively fall
+        back to cloud models (OpenAI / Gemini / Anthropic) based on confidence and latency SLOs.
+      </li>
+      <li>
+        <strong>Semantic image search:</strong> Use joint image/text embeddings and a vector store (pgvector or Qdrant)
+        to support natural-language search over an image collection.
+      </li>
+      <li>
+        <strong>Production-grade observability:</strong> Expose Prometheus metrics, ship dashboards via Grafana, and
+        trace requests through Jaeger so you can tune performance and routing.
+      </li>
+      <li>
+        <strong>Dataset seeding & benchmarking:</strong> Seed the system with real datasets (COCO, Unsplash) and run
+        benchmarks for latency, cost, and quality metrics.
+      </li>
+      <li>
+        <strong>Modern React UI:</strong> Next.js app with authenticated flows, gallery search, image detail modal, and
+        a metrics view backed by API proxy routes.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Sign in to Your Image Library">
+    <ProjectScreenshot
+      src="/images/projects/imageSearch/is-1-signin.png"
+      alt="Sign-in page for the Image Search app with email and password fields and links to sign in or create a new account."
+      caption="Authentication flow for accessing a personal image library and search workspace."
+    />
+    <p>
+      The UI is structured as a multi-user image library. Users sign in or create a new account before interacting with
+      the gallery. This keeps uploaded content scoped to the authenticated user while allowing the backend to enforce
+      per-user quotas, metrics, and storage policies.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Search Images with Natural Language">
+    <ProjectScreenshot
+      src="/images/projects/imageSearch/is-2-search.png"
+      alt="Gallery view showing a search query for “beach at sunset” and a grid of matching images with captions and similarity scores."
+      caption="Semantic text-to-image search over an embedded image dataset, powered by pgvector or Qdrant."
+    />
+    <p>
+      The gallery view lets users search their library with natural-language queries such as{' '}
+      <q>beach at sunset</q>. Each image has an auto-generated caption and a similarity score that comes from joint
+      image/text embeddings stored in the vector database.
+    </p>
+    <p>
+      Under the hood, the search flow looks like this:
+    </p>
+    <ul>
+      <li>The query text is embedded using the same encoder as the images.</li>
+      <li>The vector store (pgvector or Qdrant) performs a kNN search to retrieve the closest images.</li>
+      <li>
+        Results are rendered as cards with captions and scores, making it clear how strongly each image matches the
+        query.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Inspect Image Details and Find Similar Images">
+    <ProjectScreenshot
+      src="/images/projects/imageSearch/is-3-similar.png"
+      alt="Image detail modal showing a beach sunset photo, its generated caption, dimensions, format, and a Find similar button."
+      caption="Image detail view with caption, metadata, and a one-click similar image search."
+    />
+    <p>
+      Clicking on an image opens a detail modal where users can see the generated caption, dimensions, format, and other
+      metadata. From here, they can trigger a <q>Find similar</q> search that reuses the current image&rsquo;s
+      embedding as the query vector.
+    </p>
+    <p>
+      This demonstrates how embeddings enable both text-to-image and image-to-image search with the same infrastructure,
+      and how to wrap that capability in a simple, understandable UX.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Architecture & Routing Policy">
+    <p>
+      The backend is organized around a FastAPI gateway that exposes endpoints such as <code>/images</code>,{' '}
+      <code>/search</code>, <code>/metrics</code>, and <code>/healthz</code>. Uploaded images are stored via a pluggable
+      storage layer that can use local disk, MinIO, Cloudflare R2, or AWS S3, while metadata and embeddings are stored
+      in Postgres (pgvector) or Qdrant.
+    </p>
+    <p>
+      Captioning and embedding follow a local-first policy:
+    </p>
+    <ul>
+      <li>
+        Run captioning with a local BLIP model whenever possible, and measure confidence and latency for each request.
+      </li>
+      <li>
+        If confidence is below a threshold or latency exceeds the configured budget, route the request to a cloud model
+        provider via a common adapter interface.
+      </li>
+      <li>
+        Record metrics (latency, cost estimation, local vs cloud ratios) so decisions can be tuned based on real-world
+        behaviour.
+      </li>
+    </ul>
+    <p>
+      The Next.js UI consumes a small set of API proxy routes (for example <code>/api/search</code> and{' '}
+      <code>/api/images</code>) which forward to the FastAPI gateway, keeping the frontend simple while still making the
+      system deployable as independent services.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="What I Focused On (Engineering Notes)">
+    <ul>
+      <li>
+        <strong>Routing strategy:</strong> Designed a local-first routing policy that balances cost, latency, and
+        quality by combining confidence thresholds and latency budgets, with configuration via environment variables.
+      </li>
+      <li>
+        <strong>Vector store abstraction:</strong> Implemented a backend-agnostic search layer that supports both
+        pgvector and Qdrant, allowing the same API to run on Postgres-only setups or a dedicated vector DB.
+      </li>
+      <li>
+        <strong>Observability:</strong> Integrated Prometheus, Grafana, and Jaeger so individual requests can be traced
+        through captioning, embedding, storage, and search, and performance can be monitored over time.
+      </li>
+      <li>
+        <strong>Dataset tooling:</strong> Added scripts to seed the system with real-world datasets (COCO, Unsplash) and
+        benchmarking notebooks to evaluate latency distributions and quality metrics.
+      </li>
+      <li>
+        <strong>UI/UX:</strong> Built a clean Next.js interface that makes advanced capabilities (vector search, local
+        vs cloud routing) feel like a straightforward image search product rather than a research prototype.
+      </li>
+    </ul>
+  </ProjectSection>
+</ProjectPage>

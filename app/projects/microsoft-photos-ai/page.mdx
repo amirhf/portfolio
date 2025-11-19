@@ -1,8 +1,255 @@
-export const metadata = { title: 'Microsoft Photos — AI Editor Case Study' }
- 
-# Microsoft Photos — AI Editor
-**Tagline:** On‑device + cloud AI for photo editing → +20% MAU
-## Context
-Product: Windows Photos — Editor features. Role: Senior Software Engineer (feature owner/integrator). Timeline: 2021–2025.
-## Highlights
-Local‑first inference (segmentation), smart erase with cloud fallback, upscaling, quality gates, telemetry.
+import ProjectPage from '@/components/projects/ProjectPage'
+import ProjectHero from '@/components/projects/ProjectHero'
+import ProjectSection from '@/components/projects/ProjectSection'
+import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+
+export const metadata = {
+  title: 'Editor AI for Windows Photos',
+  description:
+    'Shipped GPU-accelerated AI editing features (background removal, magic erase, upscaling) to tens of millions of Windows Photos users with a local-first, cloud-assisted architecture that increased MAU by ~20% in six months.',
+}
+
+<ProjectPage>
+  <ProjectHero
+    title="Editor AI for Windows Photos"
+    tagline="Local-first, cloud-assisted AI editing for tens of millions of Windows users."
+  >
+    <p>
+      At Microsoft I worked on bringing modern AI editing into the Windows Photos app. We built and shipped a new
+      generation of tools—background removal, object selection, magic erase, and upscaling—that run on-device when
+      possible and fall back to cloud models when needed. These features helped drive a ~20% increase in monthly active
+      users over the first six months after launch.
+    </p>
+  </ProjectHero>
+
+  <ProjectSection title="Product context">
+    <p>
+      Windows Photos is the default photo viewer and editor on Windows, used by <strong>tens of millions</strong> of
+      people. When I joined the team, the editor had only a simple “auto enhance” feature built with traditional image
+      processing and classical ML. Modern deep-learning and generative AI capabilities did not exist in the product.
+    </p>
+    <p>
+      I was part of a ~<strong>30-engineer</strong> Photos organization, in a focused{' '}
+      <strong>AI photo editing group of 6 engineers</strong>. We collaborated closely with:
+    </p>
+    <ul>
+      <li>
+        <strong>Data scientists</strong> to pick the right models and tune them for quality and performance.
+      </li>
+      <li>
+        A separate <strong>backend team</strong> that hosted cloud models behind managed Azure AI endpoints.
+      </li>
+    </ul>
+    <p>
+      The product goals were to make Windows Photos a <strong>flagship showcase for Windows AI</strong> and reduce churn
+      to third-party editors by making the default app powerful enough for most everyday editing tasks.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="My role">
+    <p>
+      My role was to <strong>integrate local AI models into the Windows Photos Editor</strong> and{' '}
+      <strong>co-own the re-architecture of the editor pipeline</strong> so it could support masks, layers, and
+      AI-driven edits.
+    </p>
+    <ul>
+      <li>
+        Integrated <strong>on-device ONNX Runtime models</strong> (GPU-first, with session reuse) into the editor.
+      </li>
+      <li>
+        Co-designed how the editor represents <strong>masks, selections, and layered edits</strong> so AI tools can plug
+        in cleanly.
+      </li>
+      <li>
+        Heavily shaped the <strong>Magic Erase</strong> and <strong>Background</strong> features end-to-end—from UX
+        integration through to performance and quality optimization.
+      </li>
+      <li>
+        Integrated with <strong>cloud-hosted models</strong> (Azure AI endpoints) as a fallback when local inference
+        was not suitable.
+      </li>
+      <li>
+        Improved <strong>telemetry and quality checks</strong> so we could ship new AI features safely at Windows
+        scale.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="What we built">
+    <p>
+      We introduced a set of <strong>Editor AI</strong> tools that make complex edits accessible to everyday users:
+    </p>
+    <ul>
+      <li>
+        <strong>Magic erase:</strong> remove unwanted objects and inpaint the background.
+      </li>
+      <li>
+        <strong>Background tools:</strong> blur, remove, or replace the background using subject segmentation.
+      </li>
+      <li>
+        <strong>Object selection:</strong> select people or objects with one click, then refine with brushes.
+      </li>
+      <li>
+        <strong>Upscaling / enhancement:</strong> improve detail and perceived quality in low-resolution photos.
+      </li>
+    </ul>
+
+    <div className="mt-8 grid gap-6 md:grid-cols-2">
+      <ProjectScreenshot
+        src="/images/projects/windows-photos/win-photos-magic-erase.png.webp"
+        alt="Magic erase in Windows Photos removing background distractions from a beach photo."
+        caption="Magic erase removes distractions (e.g., people in the background) while keeping the main subject sharp."
+      />
+      <ProjectScreenshot
+        src="/images/projects/windows-photos/win-photos-bg-removal.gif"
+        alt="Background removal UI in Windows Photos with options to blur, remove, or replace the background."
+        caption="Background tools segment the subject and let users blur, remove, or replace the background in a few clicks."
+      />
+    </div>
+
+    <p>
+      From a user’s perspective, these workflows are simple: brush roughly, let the model refine the mask, tweak if
+      needed, then apply. Under the hood, they depend on a new architecture for AI-powered masks, selections, and
+      compositing.
+    </p>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Architecture & technical design">
+    <p>
+      Editor AI follows a <strong>local-first, cloud-assisted</strong> design that balances latency, quality, and device
+      diversity:
+    </p>
+    <ul>
+      <li>
+        <strong>Editor front-end (C#/TypeScript):</strong> implements the editing UI (brushes, panels, sliders) and
+        manages selection masks and layered edits in the user’s session.
+      </li>
+      <li>
+        <strong>Local AI inference (ONNX Runtime, GPU-first):</strong> runs segmentation, selection, and inpainting
+        models directly on the user’s device, reusing sessions to avoid reload overhead and processing large images via
+        tiling/batching to stay within memory limits.
+      </li>
+      <li>
+        <strong>Cloud inference (Azure AI endpoints):</strong> integrates with managed endpoints owned by a backend
+        team, used when device capabilities or image properties make local inference unsuitable.
+      </li>
+      <li>
+        <strong>Decision layer:</strong> encapsulates logic for choosing local vs. cloud paths based on device
+        capability, feature type, image size, and service health, so most users get instant local results while others
+        still see consistent quality.
+      </li>
+      <li>
+        <strong>Telemetry & quality gates:</strong> instrumentation for events like <code>feature_invoked</code>,{' '}
+        <code>edit_completed</code>, <code>undo</code>, and <code>edits_saved</code> feeds Application Insights
+        dashboards and release gates in Azure DevOps.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Key engineering challenges">
+    <h3 className="mt-0 text-base font-semibold">Making heavy AI edits feel fast</h3>
+    <p>
+      Large images and GPU-heavy models can easily stall an editor. To keep Editor AI responsive, I:
+    </p>
+    <ul>
+      <li>Reworked image processing with <strong>tiling and batching</strong> so we only keep manageable regions in memory.</li>
+      <li>
+        Tuned the data flow between the editor and ONNX Runtime, emphasizing <strong>GPU inference and session reuse</strong>.
+      </li>
+      <li>Optimized memory usage to avoid spikes that would impact other parts of the app.</li>
+    </ul>
+    <p>
+      These improvements reduced <strong>P95 time-to-result</strong> for heavy edits so that operations like Magic Erase
+      feel interactive even on consumer hardware.
+    </p>
+
+    <h3 className="mt-8 text-base font-semibold">Balancing local and cloud across diverse devices</h3>
+    <p>
+      Windows Photos runs on everything from budget laptops to high-end workstations. A single strategy would either be
+      too slow on low-end devices or underuse powerful hardware.
+    </p>
+    <ul>
+      <li>
+        The decision layer defaults to <strong>local GPU inference</strong> when the device can handle it.
+      </li>
+      <li>
+        For weaker devices or particularly demanding cases, it transparently routes to{' '}
+        <strong>cloud-hosted models</strong>.
+      </li>
+      <li>
+        Health signals ensure the editor <strong>fails gracefully</strong> and stays responsive if cloud services are
+        degraded.
+      </li>
+    </ul>
+
+    <h3 className="mt-8 text-base font-semibold">Shipping AI features reliably at Windows scale</h3>
+    <p>
+      Early on, test flakiness and weak metrics made AI feature releases risky. I contributed to stabilizing this by:
+    </p>
+    <ul>
+      <li>Reducing flaky tests and tightening assumptions in integration and functional tests.</li>
+      <li>
+        Ensuring key user journeys were covered by tests that could run reliably in CI (Azure DevOps pipelines).
+      </li>
+      <li>
+        Helping define <strong>quality gates</strong> based on live telemetry so staged rollouts could be blocked if
+        success rates or latency regressed.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Impact">
+    <ul>
+      <li>
+        Editor AI contributed to roughly a <strong>20% increase in monthly active users</strong> over the six months
+        following launch.
+      </li>
+      <li>
+        Many everyday edits that previously required third-party tools could now be completed inside Windows Photos,
+        reducing churn out of the default app.
+      </li>
+      <li>
+        The app became a stronger <strong>showcase for Windows AI</strong>, aligning with the broader Windows product
+        strategy.
+      </li>
+      <li>
+        The team now has a reusable pattern for <strong>local + cloud AI integration</strong> and a more robust
+        telemetry and testing pipeline for future AI features.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="Tech stack & lessons">
+    <p>
+      <strong>Tech:</strong> TypeScript, C#, Python, ONNX Runtime (GPU-first, session reuse), Azure AI endpoints, Docker,
+      Windows platform APIs, Azure DevOps, Application Insights.
+    </p>
+    <p>Key lessons I bring to future AI-integration work:</p>
+    <ul>
+      <li>
+        <strong>AI as a feature, not just a model:</strong> the UX, latency, reliability, and analytics around the
+        model matter as much as the model itself.
+      </li>
+      <li>
+        <strong>Local-first with a cloud escape hatch:</strong> run models on-device where possible, with a simple,
+        observable routing layer that can fall back to the cloud when necessary.
+      </li>
+      <li>
+        <strong>Telemetry-driven decisions:</strong> instrument usage, completion, and latency from day one and use
+        those signals both to prioritize performance work and to guard deployments.
+      </li>
+    </ul>
+  </ProjectSection>
+</ProjectPage>
