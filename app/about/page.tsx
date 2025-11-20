@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
@@ -82,40 +83,57 @@ export default function About() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-line bg-surface p-6">
-              <h3 className="font-semibold">Quick links</h3>
-              <ul className="mt-3 space-y-2 text-sm">
-                <li>
-                  <a
-                    className="underline underline-offset-4"
-                    href="/assets/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Download resume (PDF)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="underline underline-offset-4"
-                    href="https://github.com/amirhf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="underline underline-offset-4"
-                    href="https://www.linkedin.com/in/amir-firouzmanesh/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-              </ul>
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-line bg-surface p-6 flex flex-col items-center">
+                <div className="overflow-hidden rounded-full border border-line">
+                  <Image
+                    src="/images/amirhf.jpg"
+                    alt="Portrait of Amir Firouzmanesh"
+                    width={200}
+                    height={200}
+                    className="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover"
+                  />
+                </div>
+                <p className="mt-3 text-sm text-ink-muted text-center">
+                  Amir Firouzmanesh · Senior Software Engineer &amp; founder of AandZ.tech
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-line bg-surface p-6">
+                <h3 className="font-semibold">Quick links</h3>
+                <ul className="mt-3 space-y-2 text-sm">
+                  <li>
+                    <a
+                      className="underline underline-offset-4"
+                      href="/assets/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download resume (PDF)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="underline underline-offset-4"
+                      href="https://github.com/amirhf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="underline underline-offset-4"
+                      href="https://www.linkedin.com/in/amir-firouzmanesh/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      LinkedIn
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </Section>
