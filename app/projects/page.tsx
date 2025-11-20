@@ -6,20 +6,8 @@ import Section from '@/components/Section'
 export default function Projects() {
   const items = [
     {
-      href: '/projects/credit-ledger',
-      title: 'Credit Ledger – Event-Driven Double-Entry Ledger with CQRS & Outbox',
-      summary: 'Production-style wallet backend that uses double-entry accounting, Kafka + transactional outbox, CQRS read models, and end-to-end observability to guarantee safe money movement under retries and failures.',
-      image: '/images/projects/ledger.png',
-    },
-    {
-      href: '/projects/ai-feature-router',
-      title: 'Local-First Image Search – AI Feature Router for Captions & Similarity',
-      summary: 'Full-stack image library that captions photos and powers text-to-image and image-to-image search using a local-first AI feature router with vector search and cloud fallback.',
-      image: '/images/projects/image-search.png',
-    },
-    {
       href: '/projects/agentic-elearning',
-      title: 'LearnPath – Agentic AI Learning Path Designer for Technical Topics',
+      title: 'LearnPath – Agentic AI Learning Path Designer',
       summary: 'AI-powered app that designs personalized learning paths, curates resources with RAG, and generates grounded quizzes with citations.',
       image: '/images/projects/learning-path.png',
     },
@@ -30,10 +18,22 @@ export default function Projects() {
       image: '/images/projects/win-photos.webp',
     },
     {
-      href: '/projects/property-finder-credits',
-      title: 'Property Finder — Credits',
-      summary: 'Reliability and service boundaries for subscriptions.',
-      image: '/assets/og-template.png',
+      href: '/projects/credit-ledger',
+      title: 'Credit Ledger – Event-Driven Double-Entry Ledger with CQRS & Outbox',
+      summary: 'Production-style wallet backend that uses double-entry accounting, Kafka + transactional outbox, CQRS read models, and end-to-end observability to guarantee safe money movement under retries and failures.',
+      image: '/images/projects/ledger.png',
+    },
+    {
+      href: '/projects/ai-feature-router',
+      title: 'Local-First Image Search – AI Feature Router for Captions & Similarity',
+      summary: 'Full-stack image library that captions photos and powers text-to-image and image-to-image search using a local-first AI feature router with vector search and cloud fallback.',
+      image: '/images/projects/image-search.jpg',
+    },
+    {
+      href: '',
+      title: 'Property Finder – Listings & Credits Reliability',
+      summary: 'At Property Finder I focused on making the listings publish and subscriptions/credits flows reliable at scale. I cut support tickets by more than 50% by clarifying ownership and rules, fixing root-cause failures, and simplifying error paths. I also led the move from a single codebase to services with clear contracts and added dashboards/alerts so on-call engineers can spot and resolve incidents faster.',
+      image: '/images/projects/pf-credits.png',
     },
   ]
 
