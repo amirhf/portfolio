@@ -1,0 +1,124 @@
+import ProjectPage from '@/components/projects/ProjectPage'
+import ProjectHero from '@/components/projects/ProjectHero'
+import ProjectSection from '@/components/projects/ProjectSection'
+import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+
+export const metadata = {
+  title: 'Amazon RDS & AWS Marketplace – Managed SQL Server and Seller Reporting',
+  description:
+    'Engineering work on Amazon RDS for SQL Server (TLS configuration, linked servers, SSAS support) and AWS Marketplace seller reporting pipelines.',
+}
+
+<ProjectPage>
+  <ProjectHero
+    title="Amazon RDS & AWS Marketplace – Managed SQL Server and Seller Reporting"
+    tagline="Hardening managed SQL Server on Amazon RDS and improving AWS Marketplace seller reporting pipelines."
+  >
+    <p>
+      At AWS I worked on two closely related areas: <strong>Amazon RDS for SQL Server</strong> (managed relational
+      databases) and <strong>AWS Marketplace</strong> (seller reporting & analytics). The focus was on
+      security-sensitive database features and reliable reporting pipelines for large sellers.
+    </p>
+    <ul>
+      <li>
+        On <strong>RDS for SQL Server</strong>, I contributed to TLS/cipher configuration, led the initial design for
+        linked servers on RDS Custom, and helped harden SSAS as a managed option.
+      </li>
+      <li>
+        On <strong>AWS Marketplace</strong>, I improved the ETL and operational guardrails behind seller usage and
+        revenue reports so data arrived consistently and with clear guarantees.
+      </li>
+    </ul>
+    <p>
+      <strong>Role:</strong> Software Development Engineer, RDS SQL Server & AWS Marketplace
+      <br />
+      <strong>Tech:</strong> Amazon RDS (SQL Server, RDS Custom), SSAS, AWS Kinesis, AWS Glue, Amazon Athena, Amazon S3,
+      AWS Lambda, AWS Step Functions, CloudWatch, ETL pipelines.
+    </p>
+  </ProjectHero>
+
+  ---
+
+  <ProjectSection title="Amazon RDS for SQL Server – Security & Enterprise Features">
+    <ProjectScreenshot
+      src="/images/projects/aws/aws-rds.webp"
+      alt="Amazon RDS illustration showing multiple database engines supported by the managed service."
+      caption="Amazon RDS for SQL Server – managed SQL Server instances with security, patching, and backups handled by AWS."
+    />
+    <p>
+      On the RDS SQL Server team I worked on features that made the managed service a better fit for regulated and
+      enterprise workloads, especially around network security and connectivity.
+    </p>
+    <ul>
+      <li>
+        <strong>TLS and cipher configuration:</strong> Co-designed and implemented support for configuring TLS versions
+        and cipher suites through DB parameter groups, so customers could disable legacy protocols (for example TLS
+        1.0/1.1) and meet their compliance baselines without custom scripting.
+      </li>
+      <li>
+        <strong>Linked servers on RDS Custom:</strong> Led the initial design for enabling linked servers from RDS
+        Custom for SQL Server to other engines (SQL Server, Oracle, PostgreSQL, etc.), defining the security model,
+        credential storage, and driver-management story that the team later used for the public launch.
+      </li>
+      <li>
+        <strong>SSAS support hardening:</strong> Helped stabilize SQL Server Analysis Services as an RDS option by
+        fixing bugs and extending tests around provisioning, authentication, and backup/restore flows.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="AWS Marketplace – Seller Reporting & Analytics">
+    <ProjectScreenshot
+      src="/images/projects/aws/aws-marketplace.jpg"
+      alt="AWS Marketplace visual with a shopping cart icon and cloud background."
+      caption="AWS Marketplace – reporting and analytics for software sellers on AWS."
+    />
+    <p>
+      In AWS Marketplace I worked on the reporting stack that generates usage, billing, and revenue reports for
+      Marketplace sellers, with a focus on making the pipelines more predictable and support-friendly.
+    </p>
+    <ul>
+      <li>
+        <strong>ETL pipeline improvements:</strong> Contributed to Kinesis → Glue → Athena pipelines that transform raw
+        usage events into seller-facing CSV reports, tightening data contracts and handling late or duplicated events
+        more gracefully.
+      </li>
+      <li>
+        <strong>Operational guardrails:</strong> Added validations, retries, and alarms around report generation and S3
+        delivery so issues surfaced early and could be attributed to a specific stage instead of appearing as opaque
+        report failures.
+      </li>
+      <li>
+        <strong>Customer experience:</strong> Worked with PMs and support to align the system’s behaviour with
+        documented SLAs and expectations (for example when data is considered complete for a given period).
+      </li>
+    </ul>
+  </ProjectSection>
+
+  ---
+
+  <ProjectSection title="What I Focused On (Engineering Notes)">
+    <ul>
+      <li>
+        <strong>Secure configuration surfaces:</strong> Designing TLS/cipher configuration as a first-class managed
+        feature rather than a one-off script, so security teams could treat RDS SQL Server like any other hardened
+        asset.
+      </li>
+      <li>
+        <strong>Working with database engineers:</strong> Collaborating with SQL Server experts on feasibility and
+        performance for linked servers and SSAS support, then turning their constraints into clear API and UX
+        trade-offs.
+      </li>
+      <li>
+        <strong>Reliability and debuggability:</strong> Instrumenting Marketplace reporting pipelines so data issues
+        were observable in metrics and logs instead of surfacing as mysterious gaps in seller dashboards.
+      </li>
+      <li>
+        <strong>Documentation and handover:</strong> Writing internal and external docs that clarified how to use the
+        features safely and how the underlying systems behaved in edge cases.
+      </li>
+    </ul>
+  </ProjectSection>
+</ProjectPage>

@@ -35,6 +35,12 @@ export default function Projects() {
       summary: 'At Property Finder I focused on making the listings publish and subscriptions/credits flows reliable at scale. I cut support tickets by more than 50% by clarifying ownership and rules, fixing root-cause failures, and simplifying error paths. I also led the move from a single codebase to services with clear contracts and added dashboards/alerts so on-call engineers can spot and resolve incidents faster.',
       image: '/images/projects/pf-credits.png',
     },
+    {
+      href: '/projects/aws',
+      title: 'Amazon RDS & AWS Marketplace – Managed SQL Server and Seller Reporting',
+      summary: 'Engineering work on Amazon RDS for SQL Server (TLS/cipher configuration, linked servers design, SSAS hardening) and AWS Marketplace seller reporting.Focused on secure configuration surfaces, collaboration with DB engineers, and making ETL/reporting pipelines reliable and debuggable for large SaaS sellers.',
+      image: '/images/projects/aws.webp',
+    },    
   ]
 
   return (
