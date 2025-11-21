@@ -18,7 +18,12 @@ export default function Writing() {
                 title={p.title}
                 subtitle={p.description || p.date}
                 actions={
-                  <a className="text-sm underline underline-offset-4" href={`/writing/${p.slug}`}>
+                  <a
+                    className="text-sm underline underline-offset-4"
+                    href={p.externalUrl || `/writing/${p.slug}`}
+                    target={p.externalUrl ? '_blank' : undefined}
+                    rel={p.externalUrl ? 'noreferrer' : undefined}
+                  >
                     Read
                   </a>
                 }

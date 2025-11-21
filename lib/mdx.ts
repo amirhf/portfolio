@@ -7,6 +7,7 @@ export type PostMeta = {
   description?: string
   date?: string
   tags?: string[]
+  externalUrl?: string
 }
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
@@ -45,6 +46,7 @@ export function getAllPostMeta(): PostMeta[] {
       description: (meta as any).description ?? '',
       date: (meta as any).date ?? '',
       tags: Array.isArray((meta as any).tags) ? (meta as any).tags : [],
+      externalUrl: (meta as any).externalUrl || undefined,
     } as PostMeta
   })
   return all.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
