@@ -1,4 +1,6 @@
-export default function Section({ id, title, children, eyebrow, className }: { id?: string; title: string; children: React.ReactNode; eyebrow?: string; className?: string }) {
+import type { ReactNode } from 'react'
+
+export default function Section({ id, title, children, eyebrow, className }: { id?: string; title: ReactNode; children: ReactNode; eyebrow?: string; className?: string }) {
   return (
     <section id={id} className={`scroll-mt-24 py-12 ${className ?? ''}`}>
       {eyebrow && <div className="text-xs uppercase tracking-widest text-ink-muted mb-2">{eyebrow}</div>}
