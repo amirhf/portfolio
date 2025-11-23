@@ -34,20 +34,20 @@ export default function About() {
               <ul className="list-disc pl-6 space-y-1">
                 <li>
                   <span className="text-ink font-medium">AI &amp; GenAI integration</span>: LLM/RAG/agent features,
-                  evaluation loops, guardrails, and safe fallbacks.
+                  evaluation loops, guardrails, and safe fallbacks to ensure production reliability and minimize hallucination risks.
                 </li>
                 <li>
                   <span className="text-ink font-medium">Distributed systems &amp; microservices</span>: event-driven
-                  designs (Kafka/Redpanda, RabbitMQ, Kinesis), CQRS, outbox, idempotency, and replayable projections.
+                  designs (Kafka/Redpanda, RabbitMQ, Kinesis), CQRS, outbox, and idempotency to ensure data consistency and system resilience at scale.
                 </li>
                 <li>
                   <span className="text-ink font-medium">Credits, ledgers &amp; subscriptions</span>: double-entry
-                  ledgers, usage/entitlement flows, and incident-resistant invariants.
+                  ledgers, usage/entitlement flows, and incident-resistant invariants to prevent revenue leakage and ensure 100% financial accuracy.
                 </li>
                 <li>
                   <span className="text-ink font-medium">Architecture, mentoring &amp; technical consulting</span>:
                   architecture reviews, design docs, code reviews, and short-term &quot;fractional principal
-                  engineer&quot; engagements.
+                  engineer&quot; engagements to unblock teams and reduce long-term technical debt.
                 </li>
               </ul>
 
