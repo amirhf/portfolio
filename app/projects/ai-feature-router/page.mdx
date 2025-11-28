@@ -4,29 +4,24 @@ import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
 
 export const metadata = {
-  title: 'Image Search – Local-First Image Captioning & Semantic Search',
+  title: 'Retail AI – Polyglot Search & Feature Router',
   description:
-    'Image captioning and semantic image/text search using local models with a cost/latency-aware cloud fallback.',
+    'Advanced retail discovery architecture integrating Go for high-concurrency search, Python for ML inference, and a cost-aware AI Feature Router.',
 }
 
 <ProjectPage>
   <ProjectHero
-    title="Image Search – Local-First Image Captioning & Semantic Search"
-    tagline="Image captioning and search using local models with a cost/latency-aware cloud fallback."
+    title="Retail AI – Polyglot Search & Feature Router"
+    tagline="A unified high-performance architecture: Go for orchestration, Python for intelligence, and an AI Feature Router for cost control."
   >
     <p>
-      Image Search is a full-stack demo of an AI-powered image library that captions images and makes them searchable
-      with natural-language queries. It is built to showcase local-first inference, vector search, and production-grade
-      observability in a realistic system.
+      This project demonstrates an <strong>Advanced Integrated Architecture</strong> designed for high-scale retail discovery. Rather than relying on a monolithic framework, it implements a <strong>Polyglot Systems Design</strong> where every component is optimized for its specific role.
     </p>
     <p>
-      The backend uses FastAPI services to caption and embed images with local models, only falling back to cloud
-      providers when confidence is low or latency budgets are exceeded. A Next.js UI lets users upload images, search by
-      text, inspect metadata, and find visually similar images.
+      The system utilizes <strong>Go</strong> to handle high-concurrency search orchestration and connection pooling, ensuring p95 latency stays under 100ms. <strong>Python</strong> is employed strictly for the deep learning pipeline (CLIP/BLIP inference), where its ecosystem is strongest.
     </p>
     <p>
-      This project demonstrates how to design and ship an AI feature router in practice: from routing policies and
-      vector stores to dataset seeding, benchmarking, and dashboards.
+      Binding these layers together is the <strong>AI Feature Router</strong>—a logic mesh that dynamically routes user requests between edge caches, local quantized models, and cloud APIs based on complexity and cost/latency budgets.
     </p>
 
     <div className="mt-6 flex flex-wrap gap-3 text-sm">
@@ -49,161 +44,83 @@ export const metadata = {
     </div>
   </ProjectHero>
 
-  <ProjectSection title="Tech Stack & Role">
+  <ProjectSection title="Tech Stack & Architectural Roles">
     <p>
-      <strong>Stack:</strong> FastAPI, Python, BLIP (captioning), OpenCLIP / SigLIP (embeddings), Postgres with pgvector
-      or Qdrant, S3-compatible storage (local / MinIO / R2 / S3), Prometheus, Grafana, Jaeger, Docker, Next.js 16, React
-      18, TypeScript, Tailwind CSS, TanStack Query.
+      <strong>The Search Plane (Go):</strong> A high-performance gRPC/HTTP layer handling query fusion, tenant isolation, and Qdrant connection multiplexing. Optimized for I/O and concurrency.
     </p>
     <p>
-      I designed and implemented the system end-to-end, including the routing policy, vector search integration,
-      observability setup, and the Next.js UI for uploading, searching, and inspecting images.
+      <strong>The Inference Plane (Python):</strong> Specialized workers handling VLM (Vision-Language Model) inference, image vectorization, and metadata extraction. Optimized for tensor operations.
+    </p>
+    <p>
+      <strong>The Data Layer:</strong> <strong>Qdrant</strong> (Hybrid Search), PostgreSQL (Structured Metadata), Redis (Semantic Caching).
+    </p>
+    <p>
+      <strong>The Logic Layer:</strong> Custom <strong>AI Feature Router</strong> implementing the "Cascade of Intelligence" pattern.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="What This Project Demonstrates">
+  <ProjectSection title="Core Architecture: The Polyglot Advantage">
+   
+    <p>
+      In high-throughput environments, a single language often imposes trade-offs. This architecture leverages the strengths of both Go and Python to eliminate bottlenecks.
+    </p>
     <ul>
       <li>
-        <strong>Local vs cloud model routing:</strong> Run captioning on local models by default and selectively fall
-        back to cloud models (OpenAI / Gemini / Anthropic) based on confidence and latency SLOs.
+        <strong>Orchestration (Go):</strong> The search API acts as the "nervous system." It manages fan-out queries to vector stores and databases in parallel goroutines, handling thousands of concurrent user requests with minimal memory footprint.
       </li>
       <li>
-        <strong>Semantic image search:</strong> Use joint image/text embeddings and a vector store (pgvector or Qdrant)
-        to support natural-language search over an image collection.
-      </li>
-      <li>
-        <strong>Production-grade observability:</strong> Expose Prometheus metrics, ship dashboards via Grafana, and
-        trace requests through Jaeger so you can tune performance and routing.
-      </li>
-      <li>
-        <strong>Dataset seeding & benchmarking:</strong> Seed the system with real datasets (COCO, Unsplash) and run
-        benchmarks for latency, cost, and quality metrics.
-      </li>
-      <li>
-        <strong>Modern React UI:</strong> Next.js app with authenticated flows, gallery search, image detail modal, and
-        a metrics view backed by API proxy routes.
+        <strong>Intelligence (Python):</strong> The background workers act as the "brain." They run heavy PyTorch models (SigLIP, BLIP) to understand content. Because these are decoupled from the read-path, model latency never blocks user search queries.
       </li>
     </ul>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Sign in to Your Image Library">
+  <ProjectSection title="The AI Feature Router (Cost & Latency Control)">
     <ProjectScreenshot
-      src="/images/projects/imageSearch/is-1-signin.png"
-      alt="Sign-in page for the Image Search app with email and password fields and links to sign in or create a new account."
-      caption="Authentication flow for accessing a personal image library and search workspace."
+      src="/images/projects/imageSearch/is-router-diagram.png"
+      alt="Diagram of the AI Feature Router logic showing tiers from Edge to Cloud."
+      caption="The Router Pattern: Traffic is filtered through cheaper layers first. Only 10% of complex queries reach the expensive Cloud API tier."
     />
     <p>
-      The UI is structured as a multi-user image library. Users sign in or create a new account before interacting with
-      the gallery. This keeps uploaded content scoped to the authenticated user while allowing the backend to enforce
-      per-user quotas, metrics, and storage policies.
-    </p>
-  </ProjectSection>
-
-  ---
-
-  <ProjectSection title="Search Images with Natural Language">
-    <ProjectScreenshot
-      src="/images/projects/imageSearch/is-2-search.png"
-      alt="Gallery view showing a search query for “beach at sunset” and a grid of matching images with captions and similarity scores."
-      caption="Semantic text-to-image search over an embedded image dataset, powered by pgvector or Qdrant."
-    />
-    <p>
-      The gallery view lets users search their library with natural-language queries such as{' '}
-      <q>beach at sunset</q>. Each image has an auto-generated caption and a similarity score that comes from joint
-      image/text embeddings stored in the vector database.
-    </p>
-    <p>
-      Under the hood, the search flow looks like this:
+      Directly connecting users to LLM APIs is a recipe for unmanageable costs. [cite_start]This system implements a <strong>Multi-Tiered Routing Strategy</strong> to optimize for economic viability[cite: 71, 72].
     </p>
     <ul>
-      <li>The query text is embedded using the same encoder as the images.</li>
-      <li>The vector store (pgvector or Qdrant) performs a kNN search to retrieve the closest images.</li>
       <li>
-        Results are rendered as cards with captions and scores, making it clear how strongly each image matches the
-        query.
+        <strong>Tier 1 (Edge/Cache):</strong> Semantic caching checks if a similar query (Cosine Similarity > 0.95) was recently answered, returning results in &lt;10ms[cite: 101].
+      </li>
+      <li>
+        <strong>Tier 2 (Local Models):</strong> Standard requests are routed to local, quantized Small Language Models (SLMs) running on-premise.
+      </li>
+      <li>
+        <strong>Tier 3 (Cloud Fallback):</strong> Only when the router detects high ambiguity or low confidence does it escalate the request to a premium model (e.g., GPT-4o), ensuring high quality without the high bill[cite: 81].
       </li>
     </ul>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Inspect Image Details and Find Similar Images">
-    <ProjectScreenshot
-      src="/images/projects/imageSearch/is-3-similar.png"
-      alt="Image detail modal showing a beach sunset photo, its generated caption, dimensions, format, and a Find similar button."
-      caption="Image detail view with caption, metadata, and a one-click similar image search."
-    />
+  <ProjectSection title="Hybrid Search & Multi-Tenancy">
     <p>
-      Clicking on an image opens a detail modal where users can see the generated caption, dimensions, format, and other
-      metadata. From here, they can trigger a <q>Find similar</q> search that reuses the current image&rsquo;s
-      embedding as the query vector.
+      <strong>Hybrid Search Fusion:</strong> Retail requires precision. Pure vector search can fail on specific product codes, while keyword search misses semantic context. [cite_start]This system implements <strong>Reciprocal Rank Fusion (RRF)</strong>, mathematically merging Dense Vectors (OpenCLIP) and Sparse Vectors (BM25) to deliver results that are both conceptually relevant and technically accurate[cite: 308].
     </p>
     <p>
-      This demonstrates how embeddings enable both text-to-image and image-to-image search with the same infrastructure,
-      and how to wrap that capability in a simple, understandable UX.
+      <strong>SaaS-Ready Multi-Tenancy:</strong> The architecture supports strict data isolation. Go middleware injects tenant context into every request, and Qdrant enforces payload filtering at the engine level. [cite_start]This ensures that in a shared infrastructure, Tenant A never sees Tenant B's inventory[cite: 315].
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Architecture & Routing Policy">
+  <ProjectSection title="Engineering Decisions (ADR)">
     <p>
-      The backend is organized around a FastAPI gateway that exposes endpoints such as <code>/images</code>,{' '}
-      <code>/search</code>, <code>/metrics</code>, and <code>/healthz</code>. Uploaded images are stored via a pluggable
-      storage layer that can use local disk, MinIO, Cloudflare R2, or AWS S3, while metadata and embeddings are stored
-      in Postgres (pgvector) or Qdrant.
+      <strong>Why Split Go and Python?</strong>
+      We avoid the "Two-Language Problem" by respecting the ecosystem boundaries. Using Go for the network-bound search layer allows us to utilize connection pooling and concurrency patterns that are difficult to tune in Python, while keeping the ML code in Python ensures we have access to the latest research models immediately.
     </p>
     <p>
-      Captioning and embedding follow a local-first policy:
+      <strong>Why Qdrant?</strong>
+      Qdrant was selected for its performance in high-concurrency scenarios and its first-class support for <strong>quantization</strong>. [cite_start]This allows us to serve millions of vectors from RAM on commodity hardware, significantly reducing the infrastructure overhead compared to other vector stores[cite: 311, 312].
     </p>
-    <ul>
-      <li>
-        Run captioning with a local BLIP model whenever possible, and measure confidence and latency for each request.
-      </li>
-      <li>
-        If confidence is below a threshold or latency exceeds the configured budget, route the request to a cloud model
-        provider via a common adapter interface.
-      </li>
-      <li>
-        Record metrics (latency, cost estimation, local vs cloud ratios) so decisions can be tuned based on real-world
-        behaviour.
-      </li>
-    </ul>
-    <p>
-      The Next.js UI consumes a small set of API proxy routes (for example <code>/api/search</code> and{' '}
-      <code>/api/images</code>) which forward to the FastAPI gateway, keeping the frontend simple while still making the
-      system deployable as independent services.
-    </p>
-  </ProjectSection>
-
-  ---
-
-  <ProjectSection title="What I Focused On (Engineering Notes)">
-    <ul>
-      <li>
-        <strong>Routing strategy:</strong> Designed a local-first routing policy that balances cost, latency, and
-        quality by combining confidence thresholds and latency budgets, with configuration via environment variables.
-      </li>
-      <li>
-        <strong>Vector store abstraction:</strong> Implemented a backend-agnostic search layer that supports both
-        pgvector and Qdrant, allowing the same API to run on Postgres-only setups or a dedicated vector DB.
-      </li>
-      <li>
-        <strong>Observability:</strong> Integrated Prometheus, Grafana, and Jaeger so individual requests can be traced
-        through captioning, embedding, storage, and search, and performance can be monitored over time.
-      </li>
-      <li>
-        <strong>Dataset tooling:</strong> Added scripts to seed the system with real-world datasets (COCO, Unsplash) and
-        benchmarking notebooks to evaluate latency distributions and quality metrics.
-      </li>
-      <li>
-        <strong>UI/UX:</strong> Built a clean Next.js interface that makes advanced capabilities (vector search, local
-        vs cloud routing) feel like a straightforward image search product rather than a research prototype.
-      </li>
-    </ul>
   </ProjectSection>
 </ProjectPage>

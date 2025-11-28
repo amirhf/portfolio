@@ -136,10 +136,9 @@ export default function Page() {
                 ))}
               </div>
             </Card>
-
             <Card
-              title="AI Feature Router — Local-first captioning & semantic search"
-              subtitle="Latency/cost-aware routing with CLIP/BLIP + cloud fallback"
+              title="Retail AI – Polyglot Search & Feature Router"
+              subtitle="A unified high-performance architecture: Go for orchestration, Python for intelligence, and an AI Feature Router for cost control."
               actions={
                 <a
                   className="text-sm underline underline-offset-4"
@@ -149,15 +148,14 @@ export default function Page() {
                 </a>
               }
             >
-              Pragmatic GenAI integration: local embeddings with cloud fallback, vector search over images, and metrics
-              to understand cost, latency, and quality trade-offs in production.
+              A production-grade retail discovery engine solving "zero results" via Hybrid Search (Dense + Sparse). 
+              Features a custom AI Feature Router to cut cloud inference costs by 90% while maintaining sub-100ms latency.
               <div className="mt-3 flex flex-wrap gap-2">
-                {['Python', 'TypeScript', 'FastAPI', 'Qdrant/pgvector', 'Next.js', 'Docker'].map((t) => (
+                {['Qdrant', 'FastAPI', 'Hybrid Search', 'OpenTelemetry', 'Python', 'Docker'].map((t) => (
                   <Badge key={t}>{t}</Badge>
                 ))}
               </div>
             </Card>
-
             <Card
               title="Agentic e-Learning — RAG + task orchestration"
               subtitle="Ask-me-anything over curated content"

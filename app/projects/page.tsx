@@ -12,6 +12,12 @@ export default function Projects() {
       image: '/images/projects/learning-path.png',
     },
     {
+      href: '/projects/ai-feature-router',
+      title: 'Retail AI – Hybrid Search Engine & Feature Router',
+      summary: 'A scalable e-commerce discovery architecture combining Qdrant-powered hybrid search with a latency-aware AI routing mesh.',
+      image: '/images/projects/image-search.jpg',
+    },   
+    {
       href: '/projects/microsoft-photos-ai',
       title: 'Editor AI for Windows Photos',
       summary: 'Local-first, cloud-assisted AI editing for tens of millions of Windows users.',
@@ -22,12 +28,6 @@ export default function Projects() {
       title: 'Credit Ledger – Event-Driven Double-Entry Ledger with CQRS & Outbox',
       summary: 'Production-style wallet backend that uses double-entry accounting, Kafka + transactional outbox, CQRS read models, and end-to-end observability to guarantee safe money movement under retries and failures.',
       image: '/images/projects/ledger.png',
-    },
-    {
-      href: '/projects/ai-feature-router',
-      title: 'Local-First Image Search – AI Feature Router for Captions & Similarity',
-      summary: 'Full-stack image library that captions photos and powers text-to-image and image-to-image search using a local-first AI feature router with vector search and cloud fallback.',
-      image: '/images/projects/image-search.jpg',
     },
     {
       href: '',
