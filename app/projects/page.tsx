@@ -25,9 +25,9 @@ export default function Projects() {
     },
     {
       href: '/projects/credit-ledger',
-      title: 'Credit Ledger – Event-Driven Double-Entry Ledger with CQRS & Outbox',
-      summary: 'Production-style wallet backend that uses double-entry accounting, Kafka + transactional outbox, CQRS read models, and end-to-end observability to guarantee safe money movement under retries and failures.',
-      image: '/images/projects/ledger.png',
+      title: 'Fintech Core: Credit Ledger',
+      summary: 'Production-ready reference architecture for SaaS credits, marketplace wallets, and usage-based billing.',
+      image: '/images/projects/ledger.webp',
     },
     {
       href: '',

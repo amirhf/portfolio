@@ -117,8 +117,8 @@ export default function Page() {
         <Section id="projects" title="Flagship reference implementations" eyebrow="Projects">
           <div className="grid gap-6 md:grid-cols-3">
             <Card
-              title="Credit Ledger — Event-driven accounting (Go + Postgres)"
-              subtitle="Blueprint for credits, balances & money-like flows"
+              title="Fintech Core: Credit Ledger"
+              subtitle="Production-ready reference architecture for SaaS credits, marketplace wallets, and usage-based billing."
               actions={
                 <a
                   className="text-sm underline underline-offset-4"
