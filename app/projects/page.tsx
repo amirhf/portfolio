@@ -7,8 +7,8 @@ export default function Projects() {
   const items = [
     {
       href: '/projects/agentic-elearning',
-      title: 'LearnPath – Agentic AI Learning Path Designer',
-      summary: 'AI-powered app that designs personalized learning paths, curates resources with RAG, and generates grounded quizzes with citations.',
+      title: 'LearnPath – Agentic Workflow Orchestrator & Reference Architecture',
+      summary: 'A production-ready blueprint for deterministic AI agents: Planner-Executor patterns, structured outputs, and polyglot microservices.',
       image: '/images/projects/learning-path.png',
     },
     {

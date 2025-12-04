@@ -157,8 +157,8 @@ export default function Page() {
               </div>
             </Card>
             <Card
-              title="Agentic e-Learning — RAG + task orchestration"
-              subtitle="Ask-me-anything over curated content"
+              title="LearnPath – Agentic Workflow Orchestrator"
+              subtitle="A reference architecture for reliable AI agents implementing Planner-Executor patterns and Structured Outputs."
               actions={
                 <a
                   className="text-sm underline underline-offset-4"
@@ -168,8 +168,7 @@ export default function Page() {
                 </a>
               }
             >
-              A RAG + agents demo that assembles grounded learning paths and quizzes, showcasing how Next.js, a Go
-              gateway, and Python workers can orchestrate retrieval and tool-use at scale.
+              A reference architecture for reliable AI agents. Implements the <strong>Planner-Executor pattern</strong> to decompose goals into verified steps and uses <strong>Structured Outputs</strong> to prevent hallucinations—bridging the gap between Python prototypes and Go production systems.
               <div className="mt-3 flex flex-wrap gap-2">
                 {['Next.js', 'Go', 'Python', 'Qdrant', 'Postgres', 'Docker'].map((t) => (
                   <Badge key={t}>{t}</Badge>

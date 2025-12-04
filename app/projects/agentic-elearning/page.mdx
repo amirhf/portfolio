@@ -4,27 +4,29 @@ import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
 
 export const metadata = {
-  title: 'LearnPath – Agentic AI Learning Path Designer for Technical Topics',
+  title: 'LearnPath – Agentic Workflow Orchestrator & Reference Architecture',
   description:
-    'AI-powered app that designs personalized learning paths, curates resources with RAG, and generates grounded quizzes with citations.',
+    'A production-ready reference architecture for deterministic AI agents, featuring Planner-Executor patterns, structured RAG, and Go+Python microservices.',
 }
 
 <ProjectPage>
   <ProjectHero
-    title="LearnPath – Agentic AI Learning Path Designer for Technical Topics"
-    tagline="AI-powered app that designs personalized learning paths, curates resources with RAG, and generates grounded quizzes with citations."
+    title="LearnPath – Agentic Workflow Orchestrator & Reference Architecture"
+    tagline="A production-ready blueprint for deterministic AI agents: Planner-Executor patterns, structured outputs, and polyglot microservices."
   >
     <p>
-      LearnPath is an agentic e-learning tool that turns a learner’s goal (for example, “prepare for event-driven
-      microservices interviews”) into a structured, multi-week learning path.
+      LearnPath is not just a learning tool—it is a <strong>reference architecture</strong> for building reliable,
+      scalable AI agents in a distributed system.
     </p>
     <p>
-      It uses semantic search (RAG) to find high-quality resources, then generates lesson plans and quizzes whose
-      questions are grounded in those materials.
+      It demonstrates how to solve the "black box" problem of LLMs by using the <strong>Planner-Executor pattern</strong>
+      to decompose high-level goals into verifiable steps, and enforcing <strong>Structured Outputs</strong> (JSON schemas)
+      to ensure the UI never breaks.
     </p>
     <p>
-      The system is built as a realistic multi-service AI application with Next.js, Go, Python/FastAPI, Qdrant, and
-      Postgres.
+      The system is engineered as a polyglot microservices stack: a <strong>Go Gateway</strong> handles orchestration
+      and high-concurrency traffic, while isolated <strong>Python services</strong> handle the probabilistic AI logic
+      (planning, RAG, quiz generation).
     </p>
     <div className="mt-6 flex flex-wrap gap-3 text-sm">
       <a
@@ -48,182 +50,175 @@ export const metadata = {
 
   <ProjectSection title="Tech Stack & Role">
     <p>
-      <strong>Stack:</strong> Next.js, TypeScript, Tailwind CSS, shadcn/ui, Go (Gin), Python/FastAPI, Qdrant, Postgres,
-      OpenRouter (Claude / GPT-4 family), Docker.
+      <strong>Stack:</strong> Go (Gin/Orchestrator), Python (FastAPI/AI Agents), Next.js (TypeScript), Qdrant (Vector
+      Search), Postgres, Docker, OpenTelemetry.
     </p>
     <p>
-      I designed and implemented the system end-to-end: architecture, backend services, frontend UX, RAG pipelines, and
-      deployment strategy.
+      I architected the system to bridge the gap between "Python AI prototypes" and "Go production systems." My focus was
+      on reliability patterns: idempotent orchestration, structured schema validation, and hybrid retrieval pipelines.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Key Features">
-    <ul>
+  <ProjectSection title="Architectural Patterns Implemented">
+    <p>
+      The system follows a strict separation of concerns, using Go for the reliability layer and Python for the intelligence layer.
+    </p>
+
+    <ProjectScreenshot
+      src="/images/projects/learnpath/architecture-diagram.png"
+      alt="System Architecture Diagram showing Go Gateway, Python Microservices, Qdrant, and Postgres."
+      caption="High-level architecture: Go handles the 'Reliability Layer' (Auth, Rate Limits), while Python handles the 'Intelligence Layer' (Agents, RAG)."
+    />
+
+    <ul className="mt-8">
       <li>
-        <strong>Agentic learning planner:</strong> Learners specify a goal, time budget, and weekly capacity. The system
-        orchestrates LLM calls to generate a realistic multi-week learning plan with lessons, milestones, and estimated
-        effort.
+        <strong>Planner-Executor Agent Pattern:</strong> Instead of a single "do it all" prompt, the system uses a
+        dedicated <em>Planner Agent</em> to propose a curriculum, which is then validated and fleshed out by specific
+        <em>Executor Agents</em>. This ensures long-horizon tasks remain coherent.
       </li>
       <li>
-        <strong>Semantic resource discovery (RAG):</strong> A Qdrant-based vector index and semantic search identify
-        relevant articles, guides, and tutorials for each topic. Results are displayed with match scores and links to
-        original sources.
+        <strong>Structured Outputs &amp; Determinism:</strong> To prevent UI crashes and "hallucinated" data formats,
+        all AI services enforce strict JSON schemas. The Go gateway validates every response before it reaches the
+        frontend, guaranteeing type safety.
       </li>
       <li>
-        <strong>Grounded lesson plans &amp; quizzes:</strong> Each lesson includes curated resources and an AI-generated
-        quiz. Questions are created from the underlying materials so they remain grounded and explainable.
-      </li>
-      <li>
-        <strong>Progress tracking &amp; dashboard:</strong> A dashboard aggregates all learning paths, showing total
-        hours, estimated weeks, active plans, and completion status.
-      </li>
-      <li>
-        <strong>Production-style architecture:</strong> The Next.js frontend talks to a Go API gateway, which fans out to
-        Python/FastAPI services for planning, RAG, and quiz generation, using Postgres and Qdrant as backing stores.
+        <strong>Advanced RAG &amp; Hybrid Search:</strong> A Qdrant-based pipeline that combines dense vector search
+        with metadata filtering. This grounds every generated lesson in real documentation, providing "citations" for
+        every AI claim.
       </li>
     </ul>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="How It Works">
+  <ProjectSection title="The User Journey (Agent Workflow)">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-1-home.png"
-      alt="LearnPath home page with “Design Your Learning Path” hero, call-to-action buttons, and explanation of how the AI learning planner works."
-      caption="Home screen showing AI-powered learning path creation and the overall flow."
+      alt="LearnPath home page showing the entry point for the agentic planner."
+      caption="The entry point where users define high-level goals. The Go orchestrator takes this input to spin up the planning agents."
     />
 
-    <h3>Set Your Goal</h3>
     <p>
-      Tell us what you want to learn and your available time budget. Our AI analyzes your goal and creates a structured
-      learning path with milestones and resources.
+      The following sequence diagram illustrates how the system enforces determinism and grounding throughout the user's request:
     </p>
 
-    <h3>Curated Resources</h3>
+    <ProjectScreenshot
+      src="/images/projects/learnpath/agent-workflow.png"
+      alt="Sequence Diagram showing the Planner-Executor workflow."
+      caption="Agent Workflow: The Planner decomposes the goal, the RAG service retrieves context, and the Executor synthesizes the final JSON plan."
+    />
+
+    <h3>1. Intent Analysis & Planning</h3>
     <p>
-      Get relevant articles, videos, and tutorials from trusted sources. We use semantic search to find the best learning
-      materials matched to your specific needs.
+      The user sets a goal (e.g., "Master Event-Driven Systems"). The <strong>Planner Agent</strong> analyzes the time
+      budget and prerequisites, generating a high-level DAG (Directed Acyclic Graph) of topics to cover.
     </p>
 
-    <h3>Test Your Knowledge</h3>
+    <h3>2. Semantic Retrieval (RAG)</h3>
     <p>
-      Take AI-generated quizzes to verify your understanding. Each lesson includes a quiz with questions directly cited
-      from the learning materials.
+      For each proposed topic, the <strong>Retrieval Agent</strong> queries the Qdrant index. It uses hybrid search to
+      fetch the most relevant technical documentation, filtering out low-quality or irrelevant matches.
+    </p>
+
+    <h3>3. Grounded Content Generation</h3>
+    <p>
+      The <strong>Quiz & Lesson Agents</strong> synthesize the retrieved context into structured lesson plans. Every
+      quiz question is linked to a specific source ID, ensuring the content is explainable and verifiable.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Discover Resources with Semantic Search">
+  <ProjectSection title="Resource Discovery Engine">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-2-search.png"
-      alt="Search page showing results for “Microservice architecture” with relevance scores and links to resources discovered by semantic search."
-      caption="Semantic search over a Qdrant vector index powers resource discovery for technical topics."
+      alt="Search page showing results for “Microservice architecture” with relevance scores."
+      caption="The 'Debug View' for the RAG pipeline, exposing the raw relevance scores and vector matches from Qdrant."
     />
     <p>
-      The Search page lets learners explore the resource catalog with semantic search. Instead of simple keyword
-      matching, the system uses vector embeddings in Qdrant to find articles, guides, and tutorials that are
-      conceptually related to the query (for example, “microservice architecture”). Each result shows a match score and a
-      direct link to the resource.
+      This screen exposes the underlying RAG capabilities. It demonstrates how the system retrieves "ground truth" data
+      before feeding it to the LLM. By using Qdrant's vector similarity, we ensure the agent has the right context window
+      to generate accurate plans.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Turn a Goal into a Structured Learning Plan">
+  <ProjectSection title="Structured Planning Interface">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-3-plan.png"
-      alt="Form for creating a learning plan with fields for learning goal, time budget, hours per week, prerequisites, and a Generate Learning Plan button."
-      caption="Create-plan form that feeds the planner service to generate a multi-week learning schedule."
+      alt="Form for creating a learning plan."
+      caption="Input for the Planner Agent. Constraints like 'Hours per Week' act as system prompts to bound the agent's output."
     />
     <p>
-      To create a plan, the learner specifies their goal, total time budget, hours per week, and any prerequisites they
-      already have. The planner service then calls an LLM to design a realistic schedule, breaking the goal into lessons
-      and weeks while keeping within the time constraints.
+      This form submits the "System Constraints" to the Planner. Unlike a chat bot, this follows a deterministic
+      input-output contract, ensuring the generated schedule fits the user's exact mathematical constraints (e.g., 4
+      weeks @ 5 hours/week).
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Track Progress Across All Your Learning Paths">
+  <ProjectSection title="Observability & Progress">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-4-dashboard.png"
-      alt="Dashboard showing metrics like active plans, total hours, estimated weeks, and a list of learning plans such as “Event-Driven Architecture” and “FastAPI fundamentals”."
-      caption="Dashboard summarizing a learner’s overall activity and giving quick access to each path."
+      alt="Dashboard summarizing learning paths."
+      caption="The user's view of the state machine. Behind the scenes, Postgres tracks the completion state of every agent-generated node."
     />
     <p>
-      The dashboard summarizes a learner’s overall progress across multiple plans. It shows the number of active plans,
-      total hours invested, estimated weeks of study, and completion statistics. Each learning path card highlights key
-      details such as topic, estimated duration, and quick access to the plan.
+      The dashboard reflects the persistence layer. Because the "Plan" is stored as a structured relational object in
+      Postgres (not just a chat log), users can track granular progress, pause, and resume their learning paths indefinitely.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Follow a Lesson-Level Learning Path">
+  <ProjectSection title="Grounded Lessons & Citations">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-5-plan-details.png"
-      alt="Plan details page for an “Event-Driven Architecture” path showing a progress bar, lessons, and curated resources with a Take Quiz button."
-      caption="Lesson-level view of an Event-Driven Architecture path, including curated resources and a quiz entry point."
+      alt="Plan details page showing curated resources."
+      caption="The final output of the Executor Agent. Note how every lesson is tied to specific, clickable references."
     />
     <p>
-      Each learning path drills down into lessons and resources. For example, an “Event-Driven Architecture” path
-      includes lessons like “EDA Fundamentals,” with multiple curated resources per lesson. A progress bar at the top
-      tracks completion so learners can see how far they’ve gone.
+      This view validates the "Reference Architecture" claim: the AI doesn't just talk; it cites. Every resource listed
+      here was retrieved via the RAG pipeline and verified by the LLM as relevant to the specific lesson topic.
     </p>
-    <p>Each lesson section surfaces:</p>
-    <ul>
-      <li>
-        Topic title, such as <code>EDA Fundamentals</code>
-      </li>
-      <li>
-        A list of curated resources under <code>Resources:</code>
-      </li>
-      <li>
-        A <code>Take Quiz</code> button leading to the grounded quiz for that lesson
-      </li>
-    </ul>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="Test Understanding with AI-Generated, Grounded Quizzes">
+  <ProjectSection title="Verified Assessment Logic">
     <ProjectScreenshot
       src="/images/projects/learnpath/lp-6-quiz.png"
-      alt="Quiz page showing multiple-choice questions about event-driven systems with radio-button answers."
-      caption="Quiz page with multiple-choice questions generated directly from the underlying learning resources."
+      alt="Quiz page with multiple-choice questions."
+      caption="A demonstration of 'Grounded Generation.' These questions are generated strictly from the text of the retrieved articles."
     />
     <p>
-      For each lesson, LearnPath generates multiple-choice quizzes directly from the underlying learning materials. The
-      questions are grounded in the source content, which makes the quiz explainable and helps prevent hallucinations.
-      This supports spaced repetition and gives learners immediate feedback on what they have actually retained.
+      To solve the hallucination problem, the Quiz Agent is instructed to generate questions <em>only</em> based on the
+      provided context chunks. If the RAG retrieval finds no data, the agent refuses to generate a question rather than
+      inventing facts.
     </p>
   </ProjectSection>
 
   ---
 
-  <ProjectSection title="What I Focused On (Engineering Notes)">
+  <ProjectSection title="Engineering Decisions (Why this Stack?)">
     <ul>
       <li>
-        <strong>Agentic orchestration:</strong> The system is structured so that different services handle goal analysis,
-        planning, resource retrieval, and quiz generation. The frontend interacts with a Go gateway that orchestrates
-        calls to Python/FastAPI services and external LLMs.
+        <strong>Go for Orchestration:</strong> I chose Go for the API Gateway to handle concurrent requests and define
+        strict service contracts. It acts as the "adult in the room," ensuring that if Python services hang or fail, the
+        system recovers gracefully.
       </li>
       <li>
-        <strong>RAG pipeline:</strong> Resource metadata and text are embedded and stored in Qdrant. Semantic queries are
-        combined with filters, and match scores are exposed in the UI so users can see how relevant each resource is.
+        <strong>Python for AI Logic:</strong> Python remains the king of ML libraries. By isolating it in microservices,
+        we get the best of both worlds: the vast ecosystem of LangChain/LlamaIndex and the operational stability of Go.
       </li>
       <li>
-        <strong>Grounding &amp; safety:</strong> Quiz questions are generated only from known resources, so answers can
-        always be traced back to a source. This mirrors retrieval-augmented generation patterns used in production
-        systems.
-      </li>
-      <li>
-        <strong>Scalable architecture:</strong> The application is designed as a set of independently deployable services
-        (Next.js frontend, Go gateway, Python microservices, Qdrant, Postgres), suitable for containerized deployment on
-        platforms like Railway and Vercel.
+        <strong>Qdrant for Production RAG:</strong> Chosen over simple pgvector for its native support for payload
+        filtering and high-performance Rust core, essential for filtering resources by "skill level" or "content type"
+        in real-time.
       </li>
     </ul>
   </ProjectSection>
