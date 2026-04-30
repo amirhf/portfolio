@@ -47,7 +47,7 @@ export default function Projects() {
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-4">
-        <Section title="Projects">
+        <Section title="Case Studies">
           <ul className="grid gap-6 md:grid-cols-2">
             {items.map((i) => (
               <li

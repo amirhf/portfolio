@@ -10,7 +10,7 @@ export default function Writing() {
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-4">
-        <Section title="Writing">
+        <Section title="Insights">
           <div className="grid gap-6 md:grid-cols-3">
             {posts.map((p) => (
               <Card
