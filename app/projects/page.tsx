@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
+import Badge from '@/components/Badge'
 
 export default function Projects() {
   const items = [
@@ -10,36 +11,48 @@ export default function Projects() {
       title: 'LearnPath – Agentic Workflow Orchestrator & Reference Architecture',
       summary: 'A production-ready blueprint for deterministic AI agents: Planner-Executor patterns, structured outputs, and polyglot microservices.',
       image: '/images/projects/learning-path.png',
+      outcome: 'Structured agent outputs with grounded RAG',
+      serviceTags: ['AI Product Integration', 'Distributed Systems'],
     },
     {
       href: '/projects/ai-feature-router',
       title: 'Retail AI – Hybrid Search Engine & Feature Router',
       summary: 'A scalable e-commerce discovery architecture combining Qdrant-powered hybrid search with a latency-aware AI routing mesh.',
       image: '/images/projects/image-search.jpg',
+      outcome: 'Sub-100ms target latency with cost-aware routing',
+      serviceTags: ['AI Product Integration', 'Distributed Systems'],
     },   
     {
       href: '/projects/microsoft-photos-ai',
       title: 'Editor AI for Windows Photos',
       summary: 'Local-first, cloud-assisted AI editing for tens of millions of Windows users.',
       image: '/images/projects/win-photos.webp',
+      outcome: '+20% monthly active users after launch',
+      serviceTags: ['AI Product Integration', 'Cloud & Data'],
     },
     {
       href: '/projects/credit-ledger',
       title: 'Fintech Core: Credit Ledger',
       summary: 'Production-ready reference architecture for SaaS credits, marketplace wallets, and usage-based billing.',
       image: '/images/projects/ledger.webp',
+      outcome: 'Double-entry financial core with traceable flows',
+      serviceTags: ['Distributed Systems', 'Cloud & Data'],
     },
     {
-      href: '',
+      href: '/projects/property-finder-credits',
       title: 'Property Finder – Listings & Credits Reliability',
       summary: 'At Property Finder I focused on making the listings publish and subscriptions/credits flows reliable at scale. I cut support tickets by more than 50% by clarifying ownership and rules, fixing root-cause failures, and simplifying error paths. I also led the move from a single codebase to services with clear contracts and added dashboards/alerts so on-call engineers can spot and resolve incidents faster.',
       image: '/images/projects/pf-credits.png',
+      outcome: '-50%+ support tickets in credits/subscriptions flows',
+      serviceTags: ['Distributed Systems', 'Cloud & Data'],
     },
     {
       href: '/projects/aws',
       title: 'Amazon RDS & AWS Marketplace – Managed SQL Server and Seller Reporting',
-      summary: 'Engineering work on Amazon RDS for SQL Server (TLS/cipher configuration, linked servers design, SSAS hardening) and AWS Marketplace seller reporting.Focused on secure configuration surfaces, collaboration with DB engineers, and making ETL/reporting pipelines reliable and debuggable for large SaaS sellers.',
+      summary: 'Engineering work on Amazon RDS for SQL Server (TLS/cipher configuration, linked servers design, SSAS hardening) and AWS Marketplace seller reporting. Focused on secure configuration surfaces, collaboration with DB engineers, and making ETL/reporting pipelines reliable and debuggable for large SaaS sellers.',
       image: '/images/projects/aws.webp',
+      outcome: 'Managed SQL Server features and seller reporting reliability',
+      serviceTags: ['Cloud & Data', 'Principal Engineering'],
     },    
   ]
 
@@ -65,7 +78,13 @@ export default function Projects() {
                     />
                   </div>
                   <h3 className="text-lg font-semibold leading-tight text-ink">{i.title}</h3>
-                  <p className="mt-1 text-sm text-ink-muted">{i.summary}</p>
+                  <p className="mt-2 text-sm font-medium text-ink">{i.outcome}</p>
+                  <p className="mt-2 text-sm text-ink-muted">{i.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {i.serviceTags.map((tag) => (
+                      <Badge key={tag}>{tag}</Badge>
+                    ))}
+                  </div>
                 </a>
               </li>
             ))}

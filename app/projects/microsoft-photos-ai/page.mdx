@@ -2,6 +2,7 @@ import ProjectPage from '@/components/projects/ProjectPage'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
 
 export const metadata = {
   title: 'Editor AI for Windows Photos',
@@ -20,7 +21,22 @@ export const metadata = {
       possible and fall back to cloud models when needed. These features helped drive a ~20% increase in monthly active
       users over the first six months after launch.
     </p>
+    <ProjectServiceTags tags={['AI Product Integration', 'Cloud, Data & Reporting Architecture']} />
   </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="Adoption" value="+20% MAU">
+        Monthly active users increased by roughly 20% in the six months after the Editor AI launch.
+      </ProjectOutcome>
+      <ProjectOutcome label="Reach" value="Tens of millions">
+        AI editing shipped inside the default Windows photo experience rather than as a niche add-on.
+      </ProjectOutcome>
+      <ProjectOutcome label="Product capability" value="Local + cloud AI">
+        A reusable pattern for on-device inference with cloud fallback, telemetry, and rollout gates.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
 
   <ProjectSection title="Product context">
     <p>

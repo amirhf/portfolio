@@ -411,17 +411,19 @@ Secondary CTA:
 
 ### Phase 2: Rewrite Core Pages
 
-- Rewrite homepage around company positioning.
-- Rewrite `/services` around four service groups and engagement types.
-- Rewrite `/about` around company model plus founder credibility.
-- Rewrite `/contact` to support qualified inbound leads.
+- Status: implemented.
+- Rewrote homepage around company positioning, services, proof, engagement model, and contact CTA.
+- Rewrote `/services` around four service groups, best-fit signals, engagement types, and linked proof.
+- Rewrote `/about` around A&Z Technology Solutions, the small specialist studio model, and founder credibility.
+- Rewrote `/contact` to support qualified inbound leads with service interest, budget, deadline, and project summary.
 
 ### Phase 3: Strengthen Proof
 
-- Add or finish the Property Finder case study page.
-- Add business outcome blocks to each project page.
-- Tag each case study with the related service area.
-- Add a stronger proof strip on the homepage.
+- Status: implemented.
+- Finished the Property Finder case study page and linked it from the case-study index.
+- Added business outcome blocks to each project page.
+- Tagged each case study with the related service area.
+- Added a stronger proof strip on the homepage mapping outcomes to case studies.
 
 ### Phase 4: Conversion and Trust
 

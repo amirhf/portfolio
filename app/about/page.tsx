@@ -3,113 +3,109 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Badge from '@/components/Badge'
+import Card from '@/components/Card'
+
+const principles = [
+  {
+    title: 'Production over prototypes',
+    body: 'AI and architecture work only matters if it survives latency targets, cost limits, failures, and real users.',
+  },
+  {
+    title: 'Observable by default',
+    body: 'We design systems so operators can answer what happened, where it failed, and what changed.',
+  },
+  {
+    title: 'Clear service boundaries',
+    body: 'We prefer explicit ownership, contracts, and invariants over accidental coupling and undocumented behavior.',
+  },
+  {
+    title: 'Handover matters',
+    body: 'Every engagement should leave behind docs, review notes, and a simpler mental model for the team.',
+  },
+]
+
+const technologies = [
+  'Go',
+  'Python',
+  'TypeScript',
+  'React',
+  'Next.js',
+  'PostgreSQL',
+  'SQL Server',
+  'Qdrant',
+  'AWS',
+  'Azure',
+  'Docker',
+  'Kubernetes',
+  'Kafka',
+  'RabbitMQ',
+  'Kinesis',
+  'Grafana',
+  'Prometheus',
+  'Jaeger',
+]
 
 export default function About() {
   return (
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-4">
-        <Section title="About">
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-4 text-ink-muted">
+        <Section title="About AandZ.tech" eyebrow="Studio">
+          <div className="grid gap-8 md:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.8fr)]">
+            <div className="space-y-5 text-ink-muted">
               <p>
-                I&apos;m <span className="text-ink font-medium">Amir Firouzmanesh</span>, a senior software engineer
-                (PhD) and founder of <span className="text-ink font-medium">AandZ.tech</span>, an independent AI &amp;
-                cloud engineering practice based in the UAE. Over the last decade I&apos;ve helped teams at Microsoft,
-                Amazon Web Services, Property Finder, and DataGardens ship real products—from AI-powered photo editing
-                in Windows Photos to RDS SQL Server features, marketplace analytics, and subscription/credit systems
-                behind large real-estate platforms.
-              </p>
-              <p>
-                These days I focus on <span className="text-ink font-medium">AI integration</span> and
-                <span className="text-ink font-medium"> event-driven architectures</span>: layering LLMs, RAG, agents,
-                and image models onto existing systems without turning everything into a research project. I like
-                working end-to-end: clarifying requirements, sketching architecture, building services and APIs,
-                instrumenting them with metrics and traces, and leaving behind clear docs and simple mental models.
-                Much of that thinking lives in open-source reference projects—such as Credit Ledger, AI Image Search /
-                Feature Router, and Learning Path Designer—that I use as blueprints for client work.
+                <span className="text-ink font-medium">AandZ.tech</span> is the public brand of{' '}
+                <span className="text-ink font-medium">A&amp;Z Technology Solutions</span>, a small specialist
+                engineering studio based in the UAE. We focus on AI integration, distributed systems, and cloud
+                architecture for product and platform teams.
               </p>
 
-              <h3 className="font-semibold text-ink pt-2">How I can help</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>
-                  <span className="text-ink font-medium">AI &amp; GenAI integration</span>: LLM/RAG/agent features,
-                  evaluation loops, guardrails, and safe fallbacks to ensure production reliability and minimize hallucination risks.
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Distributed systems &amp; microservices</span>: event-driven
-                  designs (Kafka/Redpanda, RabbitMQ, Kinesis), CQRS, outbox, and idempotency to ensure data consistency and system resilience at scale.
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Credits, ledgers &amp; subscriptions</span>: double-entry
-                  ledgers, usage/entitlement flows, and incident-resistant invariants to prevent revenue leakage and ensure 100% financial accuracy.
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Architecture, mentoring &amp; technical consulting</span>:
-                  architecture reviews, design docs, code reviews, and short-term &quot;fractional principal
-                  engineer&quot; engagements to unblock teams and reduce long-term technical debt.
-                </li>
-              </ul>
+              <p>
+                We are founder-led by <span className="text-ink font-medium">Amir Firouzmanesh</span>, a senior
+                software engineer with a PhD and experience shipping AI and platform systems at Microsoft, Amazon Web
+                Services, Property Finder, and DataGardens. That background is the studio&apos;s main operating model:
+                senior technical judgment close to the work, with trusted specialists added when a project needs
+                additional capacity.
+              </p>
 
-              <h3 className="font-semibold text-ink pt-2">Technologies I work with</h3>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>
-                  <span className="text-ink font-medium">Languages</span>: Go, Python, TypeScript/JavaScript, Java, SQL
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Backend &amp; AI</span>: FastAPI, REST/JSON APIs, ONNX
-                  Runtime, LLM APIs, LangChain
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Frontend</span>: React, Next.js, Tailwind CSS
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Data &amp; storage</span>: PostgreSQL, MySQL, SQL Server,
-                  MongoDB, Qdrant/pgvector
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Cloud &amp; infra</span>: AWS, Azure, Docker, Kubernetes
-                </li>
-                <li>
-                  <span className="text-ink font-medium">Messaging &amp; observability</span>: Kafka/Redpanda, RabbitMQ,
-                  Kinesis, Grafana, Prometheus, Jaeger, Application Insights
-                </li>
-              </ul>
+              <p>
+                We work best when the problem has real production stakes: an AI feature that needs guardrails, a
+                service architecture that needs clearer boundaries, a credits or reporting flow that must be trusted, or
+                an engineering team that needs principal-level help for a focused delivery window.
+              </p>
 
               <div className="flex flex-wrap gap-2 pt-2">
-                {['Microsoft', 'AWS', 'Property Finder', 'DataGardens'].map((t) => (
-                  <Badge key={t}>{t}</Badge>
+                {['Microsoft', 'AWS', 'Property Finder', 'DataGardens', 'Founder-led studio'].map((item) => (
+                  <Badge key={item}>{item}</Badge>
                 ))}
               </div>
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-line bg-surface p-6 flex flex-col items-center">
-                <div className="overflow-hidden rounded-full border border-line">
-                  <Image
-                    src="/images/amirhf.jpg"
-                    alt="Portrait of Amir Firouzmanesh"
-                    width={200}
-                    height={200}
-                    className="h-32 w-32 md:h-40 md:w-40 rounded-full object-cover"
-                  />
+              <div className="rounded-2xl border border-line bg-surface p-6">
+                <div className="flex items-center gap-4">
+                  <div className="overflow-hidden rounded-2xl border border-line">
+                    <Image
+                      src="/images/amirhf.jpg"
+                      alt="Portrait of Amir Firouzmanesh"
+                      width={160}
+                      height={160}
+                      className="h-24 w-24 rounded-2xl object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-ink">Amir Firouzmanesh</h3>
+                    <p className="mt-1 text-sm text-ink-muted">Founder, A&Z Technology Solutions</p>
+                  </div>
                 </div>
-                <p className="mt-3 text-sm text-ink-muted text-center">
-                  Amir Firouzmanesh · Senior Software Engineer &amp; founder of AandZ.tech
-                </p>
               </div>
 
               <div className="rounded-2xl border border-line bg-surface p-6">
-                <h3 className="font-semibold">Quick links</h3>
+                <h3 className="font-semibold text-ink">Quick links</h3>
                 <ul className="mt-3 space-y-2 text-sm">
                   <li>
-                    <a
-                      className="underline underline-offset-4"
-                      href="/assets/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Download resume (PDF)
+                    <a className="underline underline-offset-4" href="/projects">
+                      Case studies
                     </a>
                   </li>
                   <li>
@@ -134,6 +130,30 @@ export default function About() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section title="Working principles" eyebrow="How we work">
+          <div className="grid gap-6 md:grid-cols-4">
+            {principles.map((principle) => (
+              <Card key={principle.title} title={principle.title}>
+                {principle.body}
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Technology depth" eyebrow="Stack">
+          <div className="rounded-2xl border border-line bg-surface p-6">
+            <p className="max-w-3xl text-sm leading-relaxed text-ink-muted">
+              The stack depends on the system, but our work often sits across backend services, AI infrastructure,
+              data platforms, cloud operations, and observability.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {technologies.map((item) => (
+                <Badge key={item}>{item}</Badge>
+              ))}
             </div>
           </div>
         </Section>

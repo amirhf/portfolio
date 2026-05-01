@@ -2,6 +2,7 @@ import ProjectPage from '@/components/projects/ProjectPage'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
 
 export const metadata = {
   title: 'Fintech Core – Credit Ledger Reference Architecture',
@@ -23,6 +24,7 @@ export const metadata = {
       I use this architecture as a reference for consulting clients who need to migrate from "moving fast and breaking things" 
       to "moving money safely".
     </p>
+    <ProjectServiceTags tags={['Distributed Systems & Microservices', 'Cloud, Data & Reporting Architecture']} />
     <div className="mt-6 flex flex-wrap gap-3 text-sm">
       <a
         href="http://ledger.amirhf-demos.info:4000/api"
@@ -50,6 +52,20 @@ export const metadata = {
       </a>
     </div>
   </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="Financial correctness" value="Double-entry core">
+        Balanced debits and credits replace fragile counters, making every credit movement auditable.
+      </ProjectOutcome>
+      <ProjectOutcome label="Operational clarity" value="Traceable flows">
+        OpenTelemetry traces and business metrics help support and operators answer what happened.
+      </ProjectOutcome>
+      <ProjectOutcome label="Scale target" value="~400 TPS">
+        Reference benchmarks show end-to-end transfer throughput with p95 latency under 60ms.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
 
   <ProjectSection title="The Problem: Spreadsheet Chaos">
     <p>
