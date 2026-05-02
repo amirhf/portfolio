@@ -1,0 +1,14 @@
+---
+title: Production RAG Needs Evaluation Before Expansion
+description: A practical checklist for shipping retrieval-augmented AI features without losing trust.
+date: 2026-02-12
+tags: ["AIEngineering", "RAG", "Evaluation"]
+---
+
+RAG features often look impressive in a demo because the first few examples are hand-picked. Production is different: users ask unclear questions, source documents drift, and answer quality quietly changes when chunking, prompts, or embedding models change.
+
+Before expanding a RAG feature, define the decisions the product must make reliably. Then build an evaluation set around those decisions: good answers, bad-but-plausible answers, missing-context cases, and examples where the system should refuse.
+
+Track retrieval quality separately from generation quality. If the retriever fails, a better prompt will only hide the problem. If the retriever succeeds but the final answer is weak, improve synthesis, citation behavior, or response structure.
+
+The simplest useful production loop is: collect real questions, label a small representative set, run it on every retrieval or prompt change, and block releases when groundedness or refusal behavior regresses.

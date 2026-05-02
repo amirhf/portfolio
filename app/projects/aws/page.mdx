@@ -2,6 +2,7 @@ import ProjectPage from '@/components/projects/ProjectPage'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
 
 export const metadata = {
   title: 'Amazon RDS & AWS Marketplace – Managed SQL Server and Seller Reporting',
@@ -35,7 +36,22 @@ export const metadata = {
       <strong>Tech:</strong> Amazon RDS (SQL Server, RDS Custom), SSAS, AWS Kinesis, AWS Glue, Amazon Athena, Amazon S3,
       AWS Lambda, AWS Step Functions, CloudWatch, ETL pipelines.
     </p>
+    <ProjectServiceTags tags={['Cloud, Data & Reporting Architecture', 'Fractional Principal Engineer']} />
   </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="Security posture" value="Managed controls">
+        TLS and cipher configuration became safer to operate through first-class RDS surfaces.
+      </ProjectOutcome>
+      <ProjectOutcome label="Enterprise fit" value="SQL Server features">
+        Linked-server and SSAS hardening work supported more complex managed database workloads.
+      </ProjectOutcome>
+      <ProjectOutcome label="Reporting reliability" value="Clearer pipelines">
+        Marketplace reporting work improved ETL contracts, retries, alarms, and seller-facing data delivery.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
 
   ---
 

@@ -1,155 +1,148 @@
+import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Card from '@/components/Card'
 import Badge from '@/components/Badge'
 
+export const metadata: Metadata = {
+  title: 'Services | AandZ.tech',
+  description:
+    'AI product integration, distributed systems, cloud data architecture, and fractional principal engineer services from A&Z Technology Solutions.',
+}
+
+const services = [
+  {
+    title: 'AI Product Integration',
+    subtitle: 'Practical AI features that fit existing products',
+    bestFit: [
+      'You need LLM, RAG, agent, search, image, or content workflows in production.',
+      'Cost, latency, hallucinations, and fallback behavior matter as much as model quality.',
+      'Your team needs a working MVP or hardening pass, not a research demo.',
+    ],
+    engagements: ['Strategy sprint: 1-2 weeks', 'Prototype/MVP: 3-6 weeks', 'Production hardening: 4-8 weeks'],
+    proof: [
+      { label: 'Windows Photos AI', href: '/projects/microsoft-photos-ai' },
+      { label: 'Retail AI Feature Router', href: '/projects/ai-feature-router' },
+      { label: 'LearnPath', href: '/projects/agentic-elearning' },
+    ],
+    tags: ['LLMs & RAG', 'Agents', 'Structured outputs', 'Eval harnesses', 'Cost routing'],
+  },
+  {
+    title: 'Distributed Systems & Microservices',
+    subtitle: 'Service boundaries and event flows that survive production',
+    bestFit: [
+      'A monolith is becoming hard to change, or services already exist but boundaries are unclear.',
+      'Credits, subscriptions, entitlements, or workflows need stronger consistency guarantees.',
+      'Retries, duplicate events, support tickets, or unclear ownership are slowing the team down.',
+    ],
+    engagements: ['Architecture review: 1-2 weeks', 'Service extraction plan: 2-4 weeks', 'Implementation support: 4-8 weeks'],
+    proof: [
+      { label: 'Credit Ledger', href: '/projects/credit-ledger' },
+      { label: 'Property Finder Credits', href: '/projects/property-finder-credits' },
+    ],
+    tags: ['DDD', 'CQRS', 'Outbox pattern', 'Kafka / RabbitMQ / SQS', 'Idempotency'],
+  },
+  {
+    title: 'Cloud, Data & Reporting Architecture',
+    subtitle: 'AWS and reporting systems your operators can trust',
+    bestFit: [
+      'You need a cloud architecture review before scaling a data-heavy or AI-enabled product.',
+      'Reports, usage numbers, or billing analytics are difficult to explain or debug.',
+      'Your team needs clear contracts, SLAs, alarms, and operational guardrails.',
+    ],
+    engagements: ['Cloud architecture review: 1-2 weeks', 'Data pipeline hardening: 3-6 weeks', 'Reporting reliability pass: 4-8 weeks'],
+    proof: [
+      { label: 'AWS RDS & Marketplace', href: '/projects/aws' },
+      { label: 'Property Finder Credits', href: '/projects/property-finder-credits' },
+    ],
+    tags: ['AWS', 'RDS / Aurora', 'ETL pipelines', 'Data contracts', 'Athena / Redshift'],
+  },
+  {
+    title: 'Fractional Principal Engineer',
+    subtitle: 'Senior technical leadership for focused delivery windows',
+    bestFit: [
+      'You need principal-level judgment for an architecture decision or delivery push.',
+      'Tech leads need help shaping design docs, trade-offs, or review habits.',
+      'You want implementation support and mentoring without adding a permanent leadership role.',
+    ],
+    engagements: ['Design review: 1-2 weeks', 'Delivery advisory: 3-12 weeks', 'Fractional support: monthly retainer'],
+    proof: [
+      { label: 'Founder background', href: '/about' },
+      { label: 'Case studies', href: '/case-studies' },
+    ],
+    tags: ['Architecture reviews', 'Design docs', 'Code reviews', 'Mentoring', 'Tech strategy'],
+  },
+]
+
 export default function Services() {
   return (
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-4">
-        <Section
-          eyebrow="Services"
-          title="How I help product & platform teams"
-        >
+        <Section eyebrow="Services" title="Focused engineering help for product and platform teams">
           <div className="space-y-8">
             <p className="max-w-3xl text-ink-muted text-lg leading-relaxed">
-              I work with product and platform teams on short, focused
-              engagements to ship AI-powered features, stabilize distributed
-              systems, and make cloud infrastructure easier to operate.
-              Most projects are 3–12 weeks and shaped around a concrete
-              outcome: a working MVP, a hardening pass, or a clear architecture
-              you can execute with your own team.
+              We work on short, high-leverage engagements: shipping AI features, stabilizing distributed systems,
+              hardening cloud and data platforms, and giving engineering leaders principal-level support when the
+              stakes are high.
             </p>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <Card
-                title="AI Integration & GenAI Product Features"
-                subtitle="LLM-backed search, assistants, and editors you can actually ship"
-              >
-                Design and implement practical AI features: image and content
-                workflows, copilots, and “smart” search or recommendations.
-                We pick the right models (local or cloud), define latency and
-                cost policies, and set up eval harnesses and telemetry so you
-                can iterate safely.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'LLMs & RAG',
-                    'Agents',
-                    'Image & text features',
-                    'Latency / cost policy',
-                    'Eval harness',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
+              {services.map((service) => (
+                <Card key={service.title} title={service.title} subtitle={service.subtitle}>
+                  <div className="space-y-5">
+                    <div>
+                      <h4 className="text-sm font-semibold text-ink">Best fit when</h4>
+                      <ul className="mt-2 list-disc space-y-1 pl-5">
+                        {service.bestFit.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
 
-              <Card
-                title="Event-Driven Systems & Microservices"
-                subtitle="Service boundaries, messaging patterns, and resilient workflows"
-              >
-                Help you move off a monolith or untangle a fragile services
-                setup. We clarify domains and service boundaries, apply
-                CQRS/outbox where it fits, and design idempotent, observable
-                workflows over Kafka, RabbitMQ, or SQS/SNS.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'DDD',
-                    'CQRS',
-                    'Outbox pattern',
-                    'Kafka / RabbitMQ / SQS',
-                    'Idempotent consumers',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
+                    <div>
+                      <h4 className="text-sm font-semibold text-ink">Typical engagement</h4>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {service.engagements.map((item) => (
+                          <Badge key={item}>{item}</Badge>
+                        ))}
+                      </div>
+                    </div>
 
-              <Card
-                title="AWS & Cloud Architecture"
-                subtitle="Pragmatic designs for data-heavy and AI-driven products"
-              >
-                Architecture reviews and greenfield designs on AWS:
-                from RDS / Aurora and S3-based data lakes to
-                containerized services and serverless backends.
-                The focus is on secure, well-instrumented systems that your
-                team can own—rather than elaborate diagrams nobody can maintain.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'AWS RDS / Aurora',
-                    'ECS / EKS / Lambda',
-                    'API Gateway',
-                    'Networking & security',
-                    'Multi-account setup',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
+                    <div>
+                      <h4 className="text-sm font-semibold text-ink">Related proof</h4>
+                      <div className="mt-2 flex flex-wrap gap-3 text-sm">
+                        {service.proof.map((item) => (
+                          <a key={item.href + item.label} className="underline underline-offset-4" href={item.href}>
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
 
-              <Card
-                title="Data, Reporting & Analytics Pipelines"
-                subtitle="Usage, billing, and product analytics you can trust"
-              >
-                Design or harden ETL and reporting flows so stakeholders can
-                rely on the numbers. This includes data contracts, late-event
-                handling, report SLAs, and troubleshooting paths across Kinesis,
-                Kafka, Glue, dbt, warehouses, or Athena/Redshift.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'ETL pipelines',
-                    'Usage & billing reports',
-                    'Data contracts',
-                    'Athena / Redshift / warehouses',
-                    'SLA & monitoring',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
+                    <div className="flex flex-wrap gap-2">
+                      {service.tags.map((tag) => (
+                        <Badge key={tag}>{tag}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
 
-              <Card
-                title="DevOps, CI/CD & Observability"
-                subtitle="Short feedback loops and safe, predictable releases"
+            <div className="rounded-2xl border border-line bg-surface p-6">
+              <h3 className="font-semibold text-ink">Not sure which service fits?</h3>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-muted">
+                Start with the problem: a feature that needs to ship, a system that is becoming fragile, or a decision
+                your team needs to make with more confidence. We can shape the engagement from there.
+              </p>
+              <a
+                href="/contact"
+                className="mt-4 inline-flex rounded-xl bg-brand text-black px-4 py-2 text-sm font-medium hover:brightness-110 focus-visible:ring-2 ring-brand/60 outline-none"
               >
-                Review and improve your delivery pipeline: trunk-based flow,
-                branch policies, preview environments, and guardrails around
-                testing. We also tighten logging, metrics, and tracing so
-                incidents are easier to spot and debug.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'CI/CD pipelines',
-                    'Testing strategy',
-                    'Preview environments',
-                    'Dashboards & alerts',
-                    'Tracing & logs',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
-
-              <Card
-                title="Architecture Reviews & Mentoring"
-                subtitle="Targeted help for tech leads and senior ICs"
-              >
-                Lightweight architecture reviews, design doc coaching, and
-                mentoring for engineers stepping into staff/lead roles. Typical
-                engagements include a series of deep-dive sessions, written
-                recommendations, and pairing on one or two critical designs.
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {[
-                    'Architecture reviews',
-                    'Design doc coaching',
-                    'Tech strategy',
-                    'Mentoring',
-                  ].map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
+                Start a project
+              </a>
             </div>
           </div>
         </Section>

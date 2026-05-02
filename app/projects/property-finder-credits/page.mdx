@@ -1,8 +1,103 @@
-export const metadata = { title: 'Property Finder — Credits Reliability' }
- 
-# Property Finder — Credits & Subscriptions Reliability
-**Tagline:** Reduced support tickets by ~50% via clearer invariants, monitoring, and service boundaries.
-## Problem
-Subscription credits/quotas drifted under edge cases causing seller friction.
-## Approach
-Clarified invariants; outbox + idempotent consumers; dashboards and alerts; performance tests.
+import ProjectPage from '@/components/projects/ProjectPage'
+import ProjectHero from '@/components/projects/ProjectHero'
+import ProjectSection from '@/components/projects/ProjectSection'
+import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
+
+export const metadata = {
+  title: 'Property Finder - Listings & Credits Reliability',
+  description:
+    'Reliability and service-boundary work across Property Finder listings, subscriptions, and credits flows, reducing support tickets by more than 50%.',
+}
+
+<ProjectPage>
+  <ProjectHero
+    title="Property Finder - Listings & Credits Reliability"
+    tagline="Making listings, subscriptions, and credits flows more reliable for a scaled marketplace."
+  >
+    <p>
+      At Property Finder I worked on backend systems behind listings, subscriptions, and credits. The work focused on
+      reducing seller friction, clarifying ownership between services, and making operational failures easier for
+      engineering and support teams to diagnose.
+    </p>
+    <p>
+      The most visible outcome was a more than 50% reduction in support tickets related to credits and subscription
+      flows, achieved by tightening invariants, fixing root causes, and improving monitoring around the paths that
+      affected sellers most often.
+    </p>
+    <ProjectServiceTags tags={['Distributed Systems & Microservices', 'Cloud, Data & Reporting Architecture']} />
+  </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="Support load" value="-50%+ tickets">
+        Credits and subscription support tickets dropped after root-cause fixes and clearer operational signals.
+      </ProjectOutcome>
+      <ProjectOutcome label="Architecture" value="Service boundaries">
+        Listings, subscriptions, and credits flows moved toward clearer ownership and contracts.
+      </ProjectOutcome>
+      <ProjectOutcome label="Operations" value="Dashboards + alerts">
+        On-call engineers gained better visibility into failures before they turned into seller-facing issues.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
+
+  <ProjectSection title="Product context">
+    <ProjectScreenshot
+      src="/images/projects/pf-credits.png"
+      alt="Property Finder credits and subscriptions reliability case study visual."
+      caption="Reliability work across marketplace listing, subscription, and credits flows."
+    />
+    <p>
+      Property Finder is a real-estate marketplace where listing visibility, subscription entitlements, and paid credits
+      are core business workflows. Small inconsistencies in these flows can create visible seller impact: missed listing
+      actions, unclear credit balances, failed renewals, or support tickets that are difficult to explain.
+    </p>
+    <p>
+      The technical challenge was not only fixing individual bugs. The deeper work was clarifying which service owned
+      which invariant, how failures should be retried, and how operators could tell whether a seller-facing state was
+      correct.
+    </p>
+  </ProjectSection>
+
+  <ProjectSection title="What changed">
+    <ul>
+      <li>
+        <strong>Clarified business invariants:</strong> documented and enforced rules around credits, subscriptions,
+        listing actions, and entitlement states so edge cases had predictable outcomes.
+      </li>
+      <li>
+        <strong>Reduced root-cause failure paths:</strong> fixed recurring sources of drift and simplified error paths
+        that previously turned into repeated support tickets.
+      </li>
+      <li>
+        <strong>Improved service boundaries:</strong> helped move from a single-codebase mindset toward services with
+        clearer contracts, ownership, and integration points.
+      </li>
+      <li>
+        <strong>Added operational visibility:</strong> introduced dashboards, alerts, and clearer metrics so on-call
+        engineers could spot failures and support could understand affected flows faster.
+      </li>
+    </ul>
+  </ProjectSection>
+
+  <ProjectSection title="Engineering patterns">
+    <p>
+      This work maps directly to the kinds of distributed-systems problems AandZ.tech helps teams with today: credits
+      and entitlements, service boundaries, retries, idempotency, and reporting that must match operational reality.
+    </p>
+    <ul>
+      <li>
+        <strong>Boundary design:</strong> make the source of truth explicit for seller entitlements and credit movement.
+      </li>
+      <li>
+        <strong>Idempotent operations:</strong> treat retries and duplicate events as normal production conditions, not
+        exceptional cases.
+      </li>
+      <li>
+        <strong>Support-friendly observability:</strong> instrument workflows in a way that answers business questions,
+        not just CPU and error-rate questions.
+      </li>
+    </ul>
+  </ProjectSection>
+</ProjectPage>

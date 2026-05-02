@@ -1,7 +1,13 @@
 export default function Footer() {
   return (
     <footer className="border-t border-line py-8 text-center text-xs text-ink-muted">
-      © {new Date().getFullYear()} Amir Firouz. Built with Next.js and Tailwind.
+      <div>© {new Date().getFullYear()} AandZ.tech. A&amp;Z Technology Solutions.</div>
+      <div className="mt-2">
+        Project inquiries:{' '}
+        <a className="underline underline-offset-4 hover:text-ink" href="mailto:amir@aandz.tech">
+          amir@aandz.tech
+        </a>
+      </div>
     </footer>
   )
 }

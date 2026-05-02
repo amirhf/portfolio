@@ -2,6 +2,7 @@ import ProjectPage from '@/components/projects/ProjectPage'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
 
 export const metadata = {
   title: 'LearnPath – Agentic Workflow Orchestrator & Reference Architecture',
@@ -28,6 +29,7 @@ export const metadata = {
       and high-concurrency traffic, while isolated <strong>Python services</strong> handle the probabilistic AI logic
       (planning, RAG, quiz generation).
     </p>
+    <ProjectServiceTags tags={['AI Product Integration', 'Distributed Systems & Microservices']} />
     <div className="mt-6 flex flex-wrap gap-3 text-sm">
       <a
         href="https://learning-path-designer.vercel.app/"
@@ -47,6 +49,20 @@ export const metadata = {
       </a>
     </div>
   </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="AI reliability" value="Structured outputs">
+        JSON schemas and gateway validation keep agent responses predictable enough for product UI.
+      </ProjectOutcome>
+      <ProjectOutcome label="Grounding" value="RAG with citations">
+        Lesson plans and quizzes are tied to retrieved sources rather than unconstrained generation.
+      </ProjectOutcome>
+      <ProjectOutcome label="Delivery model" value="Reference architecture">
+        A reusable pattern for teams moving from Python AI prototypes to production services.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
 
   <ProjectSection title="Tech Stack & Role">
     <p>

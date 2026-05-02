@@ -18,11 +18,15 @@ export async function POST(request: Request) {
   const email = String(formData.get('email') || '').trim()
   const company = String(formData.get('company') || '').trim()
   const deadline = String(formData.get('deadline') || '').trim()
+  const serviceInterest = String(formData.get('serviceInterest') || '').trim()
   const budget = String(formData.get('budget') || '').trim()
   const summary = String(formData.get('summary') || '').trim()
 
-  if (!name || !email || !summary) {
-    return NextResponse.json({ error: 'Name, work email, and project summary are required.' }, { status: 400 })
+  if (!name || !email || !serviceInterest || !summary) {
+    return NextResponse.json(
+      { error: 'Name, work email, service interest, and project summary are required.' },
+      { status: 400 }
+    )
   }
 
   try {
@@ -33,6 +37,7 @@ export async function POST(request: Request) {
       `Work email: ${email}`,
       company && `Company: ${company}`,
       deadline && `Deadline: ${deadline}`,
+      `Service interest: ${serviceInterest}`,
       budget && `Budget range: ${budget}`,
       '',
       'Project summary:',

@@ -2,6 +2,7 @@ import ProjectPage from '@/components/projects/ProjectPage'
 import ProjectHero from '@/components/projects/ProjectHero'
 import ProjectSection from '@/components/projects/ProjectSection'
 import ProjectScreenshot from '@/components/projects/ProjectScreenshot'
+import { ProjectOutcome, ProjectOutcomes, ProjectServiceTags } from '@/components/projects/ProjectProof'
 
 export const metadata = {
   title: 'Retail AI – Polyglot Search & Feature Router',
@@ -23,6 +24,7 @@ export const metadata = {
     <p>
       Binding these layers together is the <strong>AI Feature Router</strong>—a logic mesh that dynamically routes user requests between edge caches, local quantized models, and cloud APIs based on complexity and cost/latency budgets.
     </p>
+    <ProjectServiceTags tags={['AI Product Integration', 'Distributed Systems & Microservices']} />
 
     <div className="mt-6 flex flex-wrap gap-3 text-sm">
       <a
@@ -43,6 +45,20 @@ export const metadata = {
       </a>
     </div>
   </ProjectHero>
+
+  <ProjectSection title="Business outcomes" eyebrow="Impact">
+    <ProjectOutcomes>
+      <ProjectOutcome label="Latency target" value="Sub-100ms p95">
+        Go orchestration, cache-first routing, and decoupled inference keep search interactions responsive.
+      </ProjectOutcome>
+      <ProjectOutcome label="Cost control" value="Tiered AI routing">
+        Requests flow through cache, local models, and cloud fallback based on confidence and complexity.
+      </ProjectOutcome>
+      <ProjectOutcome label="Product fit" value="SaaS-ready">
+        Tenant-aware search and feature routing patterns map cleanly to marketplace and retail teams.
+      </ProjectOutcome>
+    </ProjectOutcomes>
+  </ProjectSection>
 
   <ProjectSection title="Tech Stack & Architectural Roles">
     <p>
@@ -85,17 +101,17 @@ export const metadata = {
       caption="The Router Pattern: Traffic is filtered through cheaper layers first. Only 10% of complex queries reach the expensive Cloud API tier."
     />
     <p>
-      Directly connecting users to LLM APIs is a recipe for unmanageable costs. [cite_start]This system implements a <strong>Multi-Tiered Routing Strategy</strong> to optimize for economic viability[cite: 71, 72].
+      Directly connecting users to LLM APIs is a recipe for unmanageable costs. This system implements a <strong>Multi-Tiered Routing Strategy</strong> to optimize for economic viability.
     </p>
     <ul>
       <li>
-        <strong>Tier 1 (Edge/Cache):</strong> Semantic caching checks if a similar query (Cosine Similarity > 0.95) was recently answered, returning results in &lt;10ms[cite: 101].
+        <strong>Tier 1 (Edge/Cache):</strong> Semantic caching checks if a similar query (Cosine Similarity &gt; 0.95) was recently answered, returning results in &lt;10ms.
       </li>
       <li>
         <strong>Tier 2 (Local Models):</strong> Standard requests are routed to local, quantized Small Language Models (SLMs) running on-premise.
       </li>
       <li>
-        <strong>Tier 3 (Cloud Fallback):</strong> Only when the router detects high ambiguity or low confidence does it escalate the request to a premium model (e.g., GPT-4o), ensuring high quality without the high bill[cite: 81].
+        <strong>Tier 3 (Cloud Fallback):</strong> Only when the router detects high ambiguity or low confidence does it escalate the request to a premium model (e.g., GPT-4o), ensuring high quality without the high bill.
       </li>
     </ul>
   </ProjectSection>
@@ -104,10 +120,10 @@ export const metadata = {
 
   <ProjectSection title="Hybrid Search & Multi-Tenancy">
     <p>
-      <strong>Hybrid Search Fusion:</strong> Retail requires precision. Pure vector search can fail on specific product codes, while keyword search misses semantic context. [cite_start]This system implements <strong>Reciprocal Rank Fusion (RRF)</strong>, mathematically merging Dense Vectors (OpenCLIP) and Sparse Vectors (BM25) to deliver results that are both conceptually relevant and technically accurate[cite: 308].
+      <strong>Hybrid Search Fusion:</strong> Retail requires precision. Pure vector search can fail on specific product codes, while keyword search misses semantic context. This system implements <strong>Reciprocal Rank Fusion (RRF)</strong>, mathematically merging Dense Vectors (OpenCLIP) and Sparse Vectors (BM25) to deliver results that are both conceptually relevant and technically accurate.
     </p>
     <p>
-      <strong>SaaS-Ready Multi-Tenancy:</strong> The architecture supports strict data isolation. Go middleware injects tenant context into every request, and Qdrant enforces payload filtering at the engine level. [cite_start]This ensures that in a shared infrastructure, Tenant A never sees Tenant B's inventory[cite: 315].
+      <strong>SaaS-Ready Multi-Tenancy:</strong> The architecture supports strict data isolation. Go middleware injects tenant context into every request, and Qdrant enforces payload filtering at the engine level. This ensures that in a shared infrastructure, Tenant A never sees Tenant B's inventory.
     </p>
   </ProjectSection>
 
@@ -120,7 +136,7 @@ export const metadata = {
     </p>
     <p>
       <strong>Why Qdrant?</strong>
-      Qdrant was selected for its performance in high-concurrency scenarios and its first-class support for <strong>quantization</strong>. [cite_start]This allows us to serve millions of vectors from RAM on commodity hardware, significantly reducing the infrastructure overhead compared to other vector stores[cite: 311, 312].
+      Qdrant was selected for its performance in high-concurrency scenarios and its first-class support for <strong>quantization</strong>. This allows us to serve millions of vectors from RAM on commodity hardware, significantly reducing the infrastructure overhead compared to other vector stores.
     </p>
   </ProjectSection>
 </ProjectPage>

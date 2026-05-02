@@ -3,10 +3,9 @@
 import { useState } from 'react'
 
 const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
   { href: '/services', label: 'Services' },
-  { href: '/writing', label: 'Writing' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/writing', label: 'Insights' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -18,10 +17,15 @@ export default function Header() {
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-bg/60 border-b border-line">
       <div className="mx-auto max-w-6xl px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-xl bg-surface ring-1 ring-line flex items-center justify-center text-xs text-ink">AF</div>
-            <div className="font-medium tracking-tight">Amir Firouz · Portfolio</div>
-          </div>
+          <a href="/" className="flex items-center gap-3 rounded-lg focus-visible:ring-2 ring-brand/60 outline-none">
+            <div className="h-8 w-8 rounded-xl bg-surface ring-1 ring-line flex items-center justify-center text-xs font-semibold text-ink">
+              AZ
+            </div>
+            <div>
+              <div className="font-medium tracking-tight text-ink">AandZ.tech</div>
+              <div className="hidden text-[11px] leading-tight text-ink-muted sm:block">AI &amp; Cloud Engineering</div>
+            </div>
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-4 text-sm">
@@ -38,7 +42,7 @@ export default function Header() {
               href="/contact"
               className="rounded-lg bg-brand text-black px-3 py-1.5 text-sm font-medium hover:brightness-110 focus-visible:ring-2 ring-brand/60 outline-none"
             >
-              Book a call
+              Start a project
             </a>
           </nav>
 
@@ -81,7 +85,7 @@ export default function Header() {
               href="/contact"
               className="mt-2 inline-flex w-full items-center justify-center rounded-lg bg-brand text-black px-3 py-2 text-sm font-medium hover:brightness-110 focus-visible:ring-2 ring-brand/60 outline-none"
             >
-              Book a call
+              Start a project
             </a>
           </nav>
         )}

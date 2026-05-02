@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Card from '@/components/Card'
 import { getAllPostMeta } from '@/lib/mdx'
+
+export const metadata: Metadata = {
+  title: 'Insights | AandZ.tech',
+  description:
+    'Practical AandZ.tech insights on AI product integration, distributed systems, cloud reporting, and engineering leadership.',
+}
 
 export default function Writing() {
   const posts = getAllPostMeta()
@@ -10,7 +17,7 @@ export default function Writing() {
     <>
       <Header />
       <main className="mx-auto max-w-6xl px-4">
-        <Section title="Writing">
+        <Section title="Insights">
           <div className="grid gap-6 md:grid-cols-3">
             {posts.map((p) => (
               <Card
