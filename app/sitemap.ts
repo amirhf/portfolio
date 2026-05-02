@@ -3,7 +3,7 @@ import { getAllPostMeta } from '@/lib/mdx'
 
 export default function sitemap() {
   const base = site.url.replace(/\/$/, '')
-  const routes = ['', '/projects', '/services', '/writing', '/about', '/contact'].map((r) => ({
+  const routes = ['', '/case-studies', '/services', '/writing', '/about', '/contact'].map((r) => ({
     url: base + r,
     lastModified: new Date().toISOString(),
   }))

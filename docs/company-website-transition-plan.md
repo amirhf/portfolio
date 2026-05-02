@@ -446,11 +446,19 @@ Secondary CTA:
 - Published five total insight entries tied to the service areas.
 - Added structured data for organization, person, and professional service.
 
+### Phase 6: Launch Routing and Case-Study Polish
+
+- Status: implemented.
+- Created `/case-studies` as the public case-study index.
+- Redirected the legacy `/projects` index to `/case-studies` while preserving existing individual case-study URLs under `/projects/...`.
+- Updated navigation, homepage CTAs, about links, project-page back links, and sitemap entries to use `/case-studies`.
+- Split the case-study index into `Industry Work` and `Reference Architectures` so employment-scale proof and implementation examples are clearly framed.
+
 ## Remaining Decisions
 
 - Decide whether to add testimonials later.
 - Decide the best contact email address for form delivery and footer display.
-- Decide whether to create a separate `/case-studies` route or keep the existing `/projects` route with the `Case Studies` label.
+- Resolved: use `/case-studies` as the public index and preserve `/projects/...` for individual case-study URLs.
 
 ## Definition of Done
 

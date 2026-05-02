@@ -69,7 +69,7 @@ const services = [
     engagements: ['Design review: 1-2 weeks', 'Delivery advisory: 3-12 weeks', 'Fractional support: monthly retainer'],
     proof: [
       { label: 'Founder background', href: '/about' },
-      { label: 'Case studies', href: '/projects' },
+      { label: 'Case studies', href: '/case-studies' },
     ],
     tags: ['Architecture reviews', 'Design docs', 'Code reviews', 'Mentoring', 'Tech strategy'],
   },

@@ -11,10 +11,10 @@ export default function ProjectPage({ children }: { children: ReactNode }) {
         <div className="space-y-10">
           <div className="mb-2 text-sm">
             <Link
-              href="/projects"
+              href="/case-studies"
               className="text-ink-muted hover:text-ink underline underline-offset-4"
             >
-              ← Back to projects
+              Back to case studies
             </Link>
           </div>
           {children}

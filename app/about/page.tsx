@@ -112,7 +112,7 @@ export default function About() {
                 <h3 className="font-semibold text-ink">Quick links</h3>
                 <ul className="mt-3 space-y-2 text-sm">
                   <li>
-                    <a className="underline underline-offset-4" href="/projects">
+                    <a className="underline underline-offset-4" href="/case-studies">
                       Case studies
                     </a>
                   </li>

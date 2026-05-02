@@ -169,7 +169,7 @@ export default function Page() {
                     Start a project
                   </a>
                   <a
-                    href="/projects"
+                    href="/case-studies"
                     className="rounded-xl border border-line px-4 py-2 text-sm font-medium text-ink hover:border-ink/40 hover:bg-white/5"
                   >
                     View case studies
