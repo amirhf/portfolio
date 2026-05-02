@@ -97,9 +97,16 @@ export default async function Contact({
               <h3 className="font-semibold text-ink">What happens next</h3>
               <ul className="mt-3 list-disc space-y-2 pl-5">
                 <li>We review the context and look for the highest-leverage next step.</li>
-                <li>You hear back by email within 1-2 business days.</li>
+                <li>You hear back from an AandZ.tech email within 1-2 business days.</li>
                 <li>If there is a fit, we shape a focused engagement around a clear outcome.</li>
               </ul>
+              <p className="mt-4 text-xs leading-relaxed">
+                Prefer email? Send project context to{' '}
+                <a className="underline underline-offset-4 hover:text-ink" href="mailto:hello@aandz.tech">
+                  hello@aandz.tech
+                </a>
+                .
+              </p>
               <div className="mt-6 border-t border-line pt-4">
                 <h3 className="font-semibold text-ink">Good signals to include</h3>
                 <ul className="mt-3 list-disc space-y-2 pl-5">

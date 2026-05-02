@@ -6,6 +6,8 @@ import Stat from '@/components/Stat'
 import Badge from '@/components/Badge'
 import Card from '@/components/Card'
 import Reveal from '@/components/Reveal'
+import FAQ from '@/components/FAQ'
+import FounderExperienceStrip from '@/components/FounderExperienceStrip'
 
 const services = [
   {
@@ -204,16 +206,10 @@ export default function Page() {
               </div>
             </Reveal>
           </div>
+        </Section>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4 border-t border-white/5 pt-4 text-ink-muted text-sm">
-            <span className="font-medium text-ink">Founder experience includes</span>
-            <div className="flex flex-wrap items-center gap-4 opacity-80">
-              <span>Microsoft</span>
-              <span>Amazon Web Services</span>
-              <span>Property Finder</span>
-              <span>DataGardens</span>
-            </div>
-          </div>
+        <Section id="founder-experience" title="Founder-led experience, clearly framed" eyebrow="Trust">
+          <FounderExperienceStrip />
         </Section>
 
         <Section id="proof-strip" title="Proof across AI, cloud, and distributed systems" eyebrow="Evidence">
@@ -285,6 +281,10 @@ export default function Page() {
               </div>
             ))}
           </div>
+        </Section>
+
+        <Section id="faq" title="Common questions" eyebrow="FAQ">
+          <FAQ />
         </Section>
 
         <Section id="contact" title="Need senior help on a production system?" eyebrow="Start">

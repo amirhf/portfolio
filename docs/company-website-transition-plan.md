@@ -427,11 +427,12 @@ Secondary CTA:
 
 ### Phase 4: Conversion and Trust
 
-- Route all primary CTAs to the contact form.
-- Add testimonials if available.
-- Add company email/domain consistency.
-- Add Microsoft and AWS logos only in a founder-experience context, not as current clients, partners, or endorsements.
-- Add a lightweight FAQ:
+- Status: implemented.
+- Routed primary CTAs, including case-study CTAs, to the contact form.
+- No public testimonials were provided, so this remains deferred.
+- Added company-domain contact consistency with `hello@aandz.tech`.
+- Added Microsoft and AWS only in a founder-experience context, with language clarifying they are not current clients, partners, or endorsements.
+- Added a lightweight FAQ:
   - "How does the small specialist studio model work?"
   - "What project sizes are a fit?"
   - "Can you work with our existing engineering team?"

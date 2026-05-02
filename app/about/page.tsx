@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Badge from '@/components/Badge'
 import Card from '@/components/Card'
+import FounderExperienceStrip from '@/components/FounderExperienceStrip'
 
 const principles = [
   {
@@ -132,6 +133,10 @@ export default function About() {
               </div>
             </div>
           </div>
+        </Section>
+
+        <Section title="Experience context" eyebrow="Trust">
+          <FounderExperienceStrip />
         </Section>
 
         <Section title="Working principles" eyebrow="How we work">
