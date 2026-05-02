@@ -1,0 +1,14 @@
+---
+title: Reporting Pipelines Need Product-Level SLAs
+description: Why cloud reporting systems should be designed around data contracts, lateness, and operator trust.
+date: 2026-01-24
+tags: ["CloudArchitecture", "DataPipelines", "Reporting"]
+---
+
+Reporting systems fail in ways that are hard for users to interpret. A dashboard can be empty because ingestion stopped, a transform skipped late events, a report is still within its normal delay window, or a downstream export failed after the data was already correct.
+
+That is why reporting pipelines need product-level SLAs, not just infrastructure alarms. Define when data is considered complete, how late events are handled, which fields are contractual, and what support teams can tell customers when a number changes.
+
+Useful reporting architecture separates raw events, validated facts, derived views, and exported files. Each boundary should have freshness metrics, validation checks, and a clear owner.
+
+When operators can answer “is the data late, wrong, incomplete, or still processing?” the system becomes supportable. That is the difference between a report that exists and a report the business can trust.

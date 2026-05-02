@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -5,6 +6,12 @@ import Section from '@/components/Section'
 import Badge from '@/components/Badge'
 import Card from '@/components/Card'
 import FounderExperienceStrip from '@/components/FounderExperienceStrip'
+
+export const metadata: Metadata = {
+  title: 'About | AandZ.tech',
+  description:
+    'AandZ.tech is the public brand of A&Z Technology Solutions, a founder-led AI, cloud, and distributed systems engineering studio.',
+}
 
 const principles = [
   {

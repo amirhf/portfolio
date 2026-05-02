@@ -440,10 +440,11 @@ Secondary CTA:
 
 ### Phase 5: SEO and Content
 
-- Use `https://aandz.tech` in metadata.
-- Add service-specific page titles and descriptions.
-- Publish 3-5 insight posts tied to the service areas.
-- Add structured data for organization, person, and professional service if useful.
+- Status: implemented.
+- Confirmed `https://aandz.tech` is used as the metadata base and sitemap/robots base URL.
+- Added page-specific titles and descriptions for services, case studies, insights, about, contact, and insight posts.
+- Published five total insight entries tied to the service areas.
+- Added structured data for organization, person, and professional service.
 
 ## Remaining Decisions
 

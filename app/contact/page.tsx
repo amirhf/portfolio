@@ -1,6 +1,13 @@
+import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
+
+export const metadata: Metadata = {
+  title: 'Contact | AandZ.tech',
+  description:
+    'Start a project with AandZ.tech for AI product integration, distributed systems, cloud architecture, or fractional principal engineer support.',
+}
 
 export default async function Contact({
   searchParams,

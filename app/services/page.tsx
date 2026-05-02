@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Card from '@/components/Card'
 import Badge from '@/components/Badge'
+
+export const metadata: Metadata = {
+  title: 'Services | AandZ.tech',
+  description:
+    'AI product integration, distributed systems, cloud data architecture, and fractional principal engineer services from A&Z Technology Solutions.',
+}
 
 const services = [
   {

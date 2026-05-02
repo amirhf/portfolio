@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Section from '@/components/Section'
 import Badge from '@/components/Badge'
+
+export const metadata: Metadata = {
+  title: 'Case Studies | AandZ.tech',
+  description:
+    'Selected AandZ.tech case studies across AI product integration, distributed systems, cloud architecture, and marketplace reliability.',
+}
 
 export default function Projects() {
   const items = [
