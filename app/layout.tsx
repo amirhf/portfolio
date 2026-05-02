@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       name: 'A&Z Technology Solutions',
       alternateName: 'AandZ.tech',
       url: site.url,
-      email: 'hello@aandz.tech',
+      email: 'amir@aandz.tech',
       founder: { '@type': 'Person', name: 'Amir Firouzmanesh' },
     },
     {
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       '@type': 'ProfessionalService',
       name: 'AandZ.tech',
       url: site.url,
-      email: 'hello@aandz.tech',
+      email: 'amir@aandz.tech',
       areaServed: 'Worldwide',
       serviceType: [
         'AI product integration',

@@ -109,8 +109,8 @@ export default async function Contact({
               </ul>
               <p className="mt-4 text-xs leading-relaxed">
                 Prefer email? Send project context to{' '}
-                <a className="underline underline-offset-4 hover:text-ink" href="mailto:hello@aandz.tech">
-                  hello@aandz.tech
+                <a className="underline underline-offset-4 hover:text-ink" href="mailto:amir@aandz.tech">
+                  amir@aandz.tech
                 </a>
                 .
               </p>

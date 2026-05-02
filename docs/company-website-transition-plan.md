@@ -430,7 +430,7 @@ Secondary CTA:
 - Status: implemented.
 - Routed primary CTAs, including case-study CTAs, to the contact form.
 - No public testimonials were provided, so this remains deferred.
-- Added company-domain contact consistency with `hello@aandz.tech`.
+- Added company-domain contact consistency with `amir@aandz.tech`.
 - Added Microsoft and AWS only in a founder-experience context, with language clarifying they are not current clients, partners, or endorsements.
 - Added a lightweight FAQ:
   - "How does the small specialist studio model work?"

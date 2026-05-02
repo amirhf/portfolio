@@ -4,8 +4,8 @@ export default function Footer() {
       <div>© {new Date().getFullYear()} AandZ.tech. A&amp;Z Technology Solutions.</div>
       <div className="mt-2">
         Project inquiries:{' '}
-        <a className="underline underline-offset-4 hover:text-ink" href="mailto:hello@aandz.tech">
-          hello@aandz.tech
+        <a className="underline underline-offset-4 hover:text-ink" href="mailto:amir@aandz.tech">
+          amir@aandz.tech
         </a>
       </div>
     </footer>
